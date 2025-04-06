@@ -1,0 +1,92 @@
+/* Custom CSS styles */
+
+/* General styling enhancements */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    flex: 1;
+}
+
+/* Card styling */
+.card {
+    transition: transform 0.2s ease;
+    border-radius: 10px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Custom form styling */
+.form-control:focus, .form-select:focus {
+    box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+}
+
+/* Resume text area styling */
+#resume-text, #anschreiben-text, #job-description {
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Correction table styling */
+.correction-row:hover {
+    background-color: rgba(var(--bs-primary-rgb), 0.05);
+}
+
+.correction-checkbox {
+    cursor: pointer;
+}
+
+/* Button enhancements */
+.btn {
+    border-radius: 6px;
+}
+
+.btn-primary, .btn-success {
+    font-weight: 500;
+}
+
+/* Footer styling */
+footer {
+    margin-top: auto;
+}
+
+/* Progress bar custom styling */
+.progress {
+    background-color: rgba(var(--bs-secondary-rgb), 0.2);
+    border-radius: 10px;
+}
+
+.progress-bar {
+    background-color: var(--bs-primary);
+    border-radius: 10px;
+}
+
+/* Add icon animation */
+.fa-3x {
+    transition: transform 0.3s ease;
+}
+
+.card:hover .fa-3x {
+    transform: scale(1.1);
+}
+
+/* Additional responsive adjustments */
+@media (max-width: 768px) {
+    .card-body {
+        padding: 1.25rem;
+    }
+    
+    h1, h2 {
+        font-size: 1.75rem;
+    }
+    
+    h3 {
+        font-size: 1.5rem;
+    }
+}

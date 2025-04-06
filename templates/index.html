@@ -1,0 +1,113 @@
+{% extends 'layout.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-body p-4">
+                <h1 class="mb-4 text-center">AI Resume Polish</h1>
+                <p class="lead text-center">Upload your resume and get AI-powered suggestions to improve it</p>
+                
+                <form action="{{ url_for('analyze') }}" method="POST" enctype="multipart/form-data" class="mt-4">
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-center mb-3">
+                            <div class="btn-group" role="group">
+                                <input type="radio" class="btn-check" name="input-type" id="upload-option" autocomplete="off" checked>
+                                <label class="btn btn-outline-primary" for="upload-option">Upload File</label>
+                                
+                                <input type="radio" class="btn-check" name="input-type" id="paste-option" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="paste-option">Paste Text</label>
+                            </div>
+                        </div>
+                        
+                        <div id="upload-section" class="mb-3">
+                            <div class="input-group">
+                                <input type="file" class="form-control" id="resume-file" name="resume_file" accept=".pdf,.docx,.txt">
+                                <label class="input-group-text" for="resume-file">Upload</label>
+                            </div>
+                            <div class="form-text">Supported formats: PDF, DOCX, TXT</div>
+                        </div>
+                        
+                        <div id="paste-section" class="mb-3" style="display: none;">
+                            <textarea class="form-control" id="resume-text" name="resume_text" rows="10" placeholder="Paste your resume text here..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="form-label">Language</label>
+                        <div class="d-flex justify-content-center">
+                            <div class="btn-group" role="group">
+                                <input type="radio" class="btn-check" name="language" id="lang-en" value="en" autocomplete="off" checked>
+                                <label class="btn btn-outline-secondary" for="lang-en">English</label>
+                                
+                                <input type="radio" class="btn-check" name="language" id="lang-de" value="de" autocomplete="off">
+                                <label class="btn btn-outline-secondary" for="lang-de">German</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg">Analyze Resume</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4">
+                <h3>How It Works</h3>
+                <div class="row mt-4">
+                    <div class="col-md-4 mb-3">
+                        <div class="text-center mb-2">
+                            <i class="fas fa-upload fa-3x text-primary"></i>
+                        </div>
+                        <h5 class="text-center">Upload Your Resume</h5>
+                        <p class="text-center">Upload your resume in PDF, DOCX, or TXT format or paste the text directly.</p>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="text-center mb-2">
+                            <i class="fas fa-robot fa-3x text-primary"></i>
+                        </div>
+                        <h5 class="text-center">AI Analysis</h5>
+                        <p class="text-center">Our AI analyzes your resume for grammar, style, and content improvements.</p>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="text-center mb-2">
+                            <i class="fas fa-check-circle fa-3x text-primary"></i>
+                        </div>
+                        <h5 class="text-center">Get Suggestions</h5>
+                        <p class="text-center">Review personalized suggestions and download your improved resume.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const uploadOption = document.getElementById('upload-option');
+        const pasteOption = document.getElementById('paste-option');
+        const uploadSection = document.getElementById('upload-section');
+        const pasteSection = document.getElementById('paste-section');
+        
+        uploadOption.addEventListener('change', function() {
+            if (this.checked) {
+                uploadSection.style.display = 'block';
+                pasteSection.style.display = 'none';
+            }
+        });
+        
+        pasteOption.addEventListener('change', function() {
+            if (this.checked) {
+                uploadSection.style.display = 'none';
+                pasteSection.style.display = 'block';
+            }
+        });
+    });
+</script>
+{% endblock %}
