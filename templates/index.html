@@ -51,8 +51,17 @@
                         <input type="hidden" name="language" id="language-input" value="{{ session.get('language', 'en') }}">
                     </div>
                     
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-primary btn-lg pulse-button translate" data-key="analyze_button">Analyze CV</button>
+                    <div class="row g-2">
+                        <div class="col-md-6 d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg pulse-button translate" data-key="analyze_button">Analyze CV</button>
+                        </div>
+                        <div class="col-md-6 d-grid">
+                            <a href="{{ url_for('anschreiben_page') }}" class="btn btn-success btn-lg pulse-button translate" data-key="anschreiben_button">Create Cover Letter</a>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-3">
+                        <span class="badge bg-info translate" data-key="anschreiben_promo">NEW! Generate professional German cover letters with our AI</span>
                     </div>
                 </form>
             </div>
@@ -124,6 +133,9 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="text-center mt-3">
+                    <a href="{{ url_for('anschreiben_page') }}" class="btn btn-success translate" data-key="try_anschreiben">Try Cover Letter Generator Now</a>
                 </div>
             </div>
         </div>

@@ -5,32 +5,38 @@
 {% block content %}
 <div class="row justify-content-center">
     <div class="col-md-10">
-        <div class="card border-0 shadow-sm mb-4">
+        <div class="card border-0 shadow-sm mb-4 animate-card">
             <div class="card-body p-4">
-                <h2 class="card-title">Cover Letter Generator</h2>
-                <p class="card-text">Generate a personalized cover letter (Anschreiben) based on your resume and the job description.</p>
+                <h2 class="card-title translate" data-key="anschreiben_title">Cover Letter Generator</h2>
+                <p class="card-text translate" data-key="anschreiben_desc">Generate a personalized cover letter (Anschreiben) based on your resume and the job description.</p>
+                <div class="alert alert-success mb-3">
+                    <h5><i class="fas fa-star me-2"></i> <span class="translate" data-key="anschreiben_pro_tip">Pro Tip:</span></h5>
+                    <p class="mb-0 translate" data-key="anschreiben_tip_content">Include the full job description for best results. Our AI analyzes the requirements and tailors your cover letter specifically to what the company is looking for.</p>
+                </div>
                 
-                <form action="{{ url_for('anschreiben_page') }}" method="post" class="mt-4">
+                <form action="{{ url_for('anschreiben_page') }}" method="post" class="mt-4" id="anschreiben-form">
                     <div class="mb-3">
-                        <label for="job-description" class="form-label">Job Description</label>
-                        <textarea class="form-control" id="job-description" name="job_description" rows="10" placeholder="Paste the job description here...">{{ job_description }}</textarea>
-                        <div class="form-text">Add as much detail as possible for better results.</div>
+                        <label for="job-description" class="form-label translate" data-key="job_description_label">Job Description</label>
+                        <textarea class="form-control" id="job-description" name="job_description" rows="10" data-translate-placeholder="paste_job_description" placeholder="Paste the job description here...">{{ job_description }}</textarea>
+                        <div class="form-text translate" data-key="job_description_help">Add as much detail as possible for better results.</div>
                     </div>
                     
                     <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-primary">Generate Cover Letter</button>
+                        <button type="submit" class="btn btn-success btn-lg pulse-button translate" data-key="generate_button">
+                            <i class="fas fa-magic me-2"></i> Generate Cover Letter
+                        </button>
                     </div>
                 </form>
             </div>
         </div>
         
         {% if anschreiben %}
-        <div class="card border-0 shadow-sm">
+        <div class="card border-0 shadow-sm animate-card">
             <div class="card-body p-4">
-                <h2 class="card-title mb-4">Generated Cover Letter</h2>
+                <h2 class="card-title mb-4 translate" data-key="generated_cover_letter">Generated Cover Letter</h2>
                 
                 <div class="alert alert-info" role="alert">
-                    <i class="fas fa-info-circle me-2"></i> This is an AI-generated cover letter. Review and personalize it before use.
+                    <i class="fas fa-info-circle me-2"></i> <span class="translate" data-key="ai_cover_letter_note">This is an AI-generated cover letter. Review and personalize it before use.</span>
                 </div>
                 
                 <div class="mb-4">
@@ -41,10 +47,10 @@
                     <input type="hidden" name="anschreiben_text" id="anschreiben-text-input" value="{{ anschreiben }}">
                     <div class="d-flex justify-content-between">
                         <button type="button" id="copy-anschreiben" class="btn btn-outline-primary">
-                            <i class="fas fa-copy me-1"></i> Copy to Clipboard
+                            <i class="fas fa-copy me-1"></i> <span class="translate" data-key="copy_clipboard">Copy to Clipboard</span>
                         </button>
                         <button type="submit" class="btn btn-success">
-                            <i class="fas fa-download me-1"></i> Download Cover Letter
+                            <i class="fas fa-download me-1"></i> <span class="translate" data-key="download_cover_letter">Download Cover Letter</span>
                         </button>
                     </div>
                 </form>
@@ -67,11 +73,21 @@
                 
                 // Change button text temporarily
                 const originalText = copyBtn.innerHTML;
-                copyBtn.innerHTML = '<i class="fas fa-check me-1"></i> Copied!';
+                copyBtn.innerHTML = '<i class="fas fa-check me-1"></i> <span class="translate" data-key="copied">Copied!</span>';
                 
                 setTimeout(function() {
                     copyBtn.innerHTML = originalText;
                 }, 2000);
+            });
+        }
+        
+        // Apply animations to newly generated content
+        const animatedCards = document.querySelectorAll('.animate-card');
+        if (animatedCards.length > 0) {
+            animatedCards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('fade-in');
+                }, 100 + (index * 150));
             });
         }
     });

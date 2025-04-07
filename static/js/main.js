@@ -1,4 +1,25 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Loading overlay functionality
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    const loadingText = document.getElementById('loadingText');
+    
+    // Show loading overlay function
+    window.showLoading = function(message) {
+        if (loadingText && message) {
+            loadingText.textContent = message;
+        }
+        if (loadingOverlay) {
+            loadingOverlay.classList.add('active');
+        }
+    };
+    
+    // Hide loading overlay function
+    window.hideLoading = function() {
+        if (loadingOverlay) {
+            loadingOverlay.classList.remove('active');
+        }
+    };
+    
     // Language selector functionality
     const languageButtons = document.querySelectorAll('.lang-btn');
     const languageInput = document.getElementById('language-input');
@@ -150,6 +171,39 @@ document.addEventListener('DOMContentLoaded', function() {
                 card.style.opacity = '1';
                 card.style.transform = 'translateY(0)';
             }, 100 + (index * 150));
+        });
+    }
+    
+    // Add loading animation for form submission
+    const resumeForm = document.getElementById('resume-form');
+    if (resumeForm) {
+        resumeForm.addEventListener('submit', function(e) {
+            // Show loading message based on input type
+            const uploadOption = document.getElementById('upload-option');
+            const isFileUpload = uploadOption && uploadOption.checked;
+            
+            if (isFileUpload) {
+                const fileInput = document.getElementById('resume-file');
+                if (fileInput && fileInput.files.length > 0) {
+                    showLoading('Uploading and analyzing your CV...');
+                }
+            } else {
+                const textInput = document.getElementById('resume-text');
+                if (textInput && textInput.value.trim() !== '') {
+                    showLoading('Analyzing your CV text...');
+                }
+            }
+        });
+    }
+    
+    // Add loading for anschreiben form
+    const anschreibenForm = document.getElementById('anschreiben-form');
+    if (anschreibenForm) {
+        anschreibenForm.addEventListener('submit', function(e) {
+            const jobDescription = document.getElementById('job-description');
+            if (jobDescription && jobDescription.value.trim() !== '') {
+                showLoading('Generating your personalized cover letter...');
+            }
         });
     }
 });

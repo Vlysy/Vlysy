@@ -10,6 +10,12 @@ const translations = {
         "faq": "FAQ",
         "donations": "Donations",
         "support": "Support on Ko-fi",
+        "loading_cv": "Analyzing your CV...",
+        "loading_upload": "Uploading and analyzing your file...",
+        "loading_anschreiben": "Generating your personalized cover letter...",
+        "try_anschreiben": "Try Cover Letter Generator Now",
+        "anschreiben_button": "Create Cover Letter",
+        "anschreiben_promo": "NEW! Generate professional German cover letters with our AI",
         
         // Index page
         "title": "AI CV Optimiser",
@@ -55,15 +61,19 @@ const translations = {
         "conciseness_score": "Conciseness",
         
         // Cover letter page
-        "anschreiben_title": "Generate Personalized Anschreiben",
-        "anschreiben_intro": "Create a tailored cover letter (Anschreiben) based on your CV and job description",
-        "job_title_label": "Job Title (Optional)",
-        "company_name_label": "Company Name (Optional)",
+        "anschreiben_title": "Cover Letter Generator",
+        "anschreiben_desc": "Generate a personalized cover letter (Anschreiben) based on your resume and the job description.",
+        "anschreiben_pro_tip": "Pro Tip:",
+        "anschreiben_tip_content": "Include the full job description for best results. Our AI analyzes the requirements and tailors your cover letter specifically to what the company is looking for.",
         "job_description_label": "Job Description",
-        "job_description_placeholder": "Paste the job description here...",
-        "generate_button": "Generate Anschreiben",
-        "download_anschreiben": "Download Anschreiben",
-        "anschreiben_example": "Your generated Anschreiben will appear here..."
+        "paste_job_description": "Paste the job description here...",
+        "job_description_help": "Add as much detail as possible for better results.",
+        "generate_button": "Generate Cover Letter",
+        "generated_cover_letter": "Generated Cover Letter",
+        "ai_cover_letter_note": "This is an AI-generated cover letter. Review and personalize it before use.",
+        "copy_clipboard": "Copy to Clipboard",
+        "copied": "Copied!",
+        "download_cover_letter": "Download Cover Letter"
     },
     de: {
         // Common
@@ -75,6 +85,12 @@ const translations = {
         "faq": "FAQ",
         "donations": "Spenden",
         "support": "Auf Ko-fi unterstützen",
+        "loading_cv": "Analysiere Ihren Lebenslauf...",
+        "loading_upload": "Datei wird hochgeladen und analysiert...",
+        "loading_anschreiben": "Ihr personalisiertes Anschreiben wird erstellt...",
+        "try_anschreiben": "Jetzt Anschreiben-Generator ausprobieren",
+        "anschreiben_button": "Anschreiben erstellen",
+        "anschreiben_promo": "NEU! Erstellen Sie professionelle deutsche Anschreiben mit unserer KI",
         
         // Index page
         "title": "KI Lebenslauf Optimisierung",
@@ -120,14 +136,18 @@ const translations = {
         "conciseness_score": "Prägnanz",
         
         // Cover letter page
-        "anschreiben_title": "Personalisiertes Anschreiben generieren",
-        "anschreiben_intro": "Erstellen Sie ein maßgeschneidertes Anschreiben basierend auf Ihrem Lebenslauf und der Stellenbeschreibung",
-        "job_title_label": "Stellentitel (Optional)",
-        "company_name_label": "Firmenname (Optional)",
+        "anschreiben_title": "Anschreiben-Generator",
+        "anschreiben_desc": "Erstellen Sie ein personalisiertes Anschreiben basierend auf Ihrem Lebenslauf und der Stellenbeschreibung.",
+        "anschreiben_pro_tip": "Profi-Tipp:",
+        "anschreiben_tip_content": "Fügen Sie die vollständige Stellenbeschreibung ein, um beste Ergebnisse zu erzielen. Unsere KI analysiert die Anforderungen und passt Ihr Anschreiben gezielt an die Bedürfnisse des Unternehmens an.",
         "job_description_label": "Stellenbeschreibung",
-        "job_description_placeholder": "Fügen Sie die Stellenbeschreibung hier ein...",
+        "paste_job_description": "Fügen Sie die Stellenbeschreibung hier ein...",
+        "job_description_help": "Fügen Sie so viele Details wie möglich hinzu, um bessere Ergebnisse zu erzielen.",
         "generate_button": "Anschreiben generieren",
-        "download_anschreiben": "Anschreiben herunterladen",
-        "anschreiben_example": "Ihr generiertes Anschreiben wird hier angezeigt..."
+        "generated_cover_letter": "Generiertes Anschreiben",
+        "ai_cover_letter_note": "Dies ist ein KI-generiertes Anschreiben. Überprüfen und personalisieren Sie es vor der Verwendung.",
+        "copy_clipboard": "In Zwischenablage kopieren",
+        "copied": "Kopiert!",
+        "download_cover_letter": "Anschreiben herunterladen"
     }
 };

@@ -72,6 +72,17 @@
         {% block content %}{% endblock %}
     </div>
 
+    <!-- Loading overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner-border text-light" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="loading-text mt-3">
+            <span id="loadingText">Processing your request</span>
+            <span class="loading-dots"></span>
+        </div>
+    </div>
+
     <footer class="bg-dark text-light py-4 mt-5">
         <div class="container">
             <div class="row">
