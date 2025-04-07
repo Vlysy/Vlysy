@@ -35,17 +35,100 @@
                         <div class="card h-100 border-0 shadow-sm">
                             <div class="card-body">
                                 <h3 class="card-title"><i class="fas fa-comment-alt text-info me-2"></i>Testimonials</h3>
-                                <div class="mt-3">
-                                    <blockquote class="blockquote">
-                                        <p>"This tool helped me improve my resume and land an interview at my dream company!"</p>
-                                        <footer class="blockquote-footer">Maria K., Software Engineer</footer>
-                                    </blockquote>
-                                    
-                                    <blockquote class="blockquote">
-                                        <p>"The cover letter generator saved me hours of work and made a fantastic impression."</p>
-                                        <footer class="blockquote-footer">Thomas L., Marketing Specialist</footer>
-                                    </blockquote>
+                                <div class="testimonials-container mt-3">
+                                    {% if testimonials %}
+                                        {% for testimonial in testimonials %}
+                                            <blockquote class="blockquote mb-4">
+                                                <p>"{{ testimonial.text }}"</p>
+                                                <footer class="blockquote-footer">
+                                                    {{ testimonial.name }}
+                                                    {% if testimonial.position or testimonial.company %}
+                                                        , 
+                                                        {% if testimonial.position %}{{ testimonial.position }}{% endif %}
+                                                        {% if testimonial.position and testimonial.company %} at {% endif %}
+                                                        {% if testimonial.company %}{{ testimonial.company }}{% endif %}
+                                                    {% endif %}
+                                                    
+                                                    {% if testimonial.rating %}
+                                                        <span class="ms-2">
+                                                            {% for i in range(testimonial.rating) %}
+                                                                <i class="fas fa-star text-warning"></i>
+                                                            {% endfor %}
+                                                            {% for i in range(5 - testimonial.rating) %}
+                                                                <i class="far fa-star text-warning"></i>
+                                                            {% endfor %}
+                                                        </span>
+                                                    {% endif %}
+                                                </footer>
+                                            </blockquote>
+                                        {% endfor %}
+                                    {% else %}
+                                        <blockquote class="blockquote">
+                                            <p>"This tool helped me improve my resume and land an interview at my dream company!"</p>
+                                            <footer class="blockquote-footer">Maria K., Software Engineer</footer>
+                                        </blockquote>
+                                        
+                                        <blockquote class="blockquote">
+                                            <p>"The cover letter generator saved me hours of work and made a fantastic impression."</p>
+                                            <footer class="blockquote-footer">Thomas L., Marketing Specialist</footer>
+                                        </blockquote>
+                                    {% endif %}
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Add a Testimonial Form -->
+                <div class="row mt-5">
+                    <div class="col-md-10 mx-auto">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body p-4">
+                                <h3 class="card-title text-center mb-4"><i class="fas fa-pen-fancy me-2"></i>Share Your Experience</h3>
+                                
+                                <form method="POST" action="{{ url_for('donate') }}">
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Your Name*</label>
+                                        <input type="text" class="form-control" id="name" name="name" required>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="position" class="form-label">Your Position</label>
+                                            <input type="text" class="form-control" id="position" name="position">
+                                        </div>
+                                        
+                                        <div class="col-md-6 mb-3">
+                                            <label for="company" class="form-label">Your Company</label>
+                                            <input type="text" class="form-control" id="company" name="company">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="testimonial_text" class="form-label">Your Testimonial*</label>
+                                        <textarea class="form-control" id="testimonial_text" name="testimonial_text" rows="3" required></textarea>
+                                    </div>
+                                    
+                                    <div class="mb-4">
+                                        <label class="form-label">Rating</label>
+                                        <div class="rating">
+                                            <div class="btn-group" role="group">
+                                                {% for i in range(1, 6) %}
+                                                <input type="radio" class="btn-check" name="rating" id="rating{{ i }}" value="{{ i }}">
+                                                <label class="btn btn-outline-warning" for="rating{{ i }}">
+                                                    {{ i }} <i class="fas fa-star"></i>
+                                                </label>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary px-4 py-2">
+                                            <i class="fas fa-paper-plane me-2"></i> Submit Testimonial
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -61,4 +144,40 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .testimonials-container {
+        max-height: 400px;
+        overflow-y: auto;
+        padding-right: 10px;
+    }
+    
+    .testimonials-container::-webkit-scrollbar {
+        width: 6px;
+    }
+    
+    .testimonials-container::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+    
+    .testimonials-container::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+    }
+    
+    .testimonials-container::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+    
+    .rating .btn-group {
+        width: 100%;
+    }
+    
+    .rating .btn {
+        flex: 1;
+    }
+</style>
 {% endblock %}
