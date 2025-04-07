@@ -7,8 +7,12 @@
     <div class="col-md-10">
         <div class="card border-0 shadow-sm mb-4">
             <div class="card-body p-4">
-                <h1 class="mb-4 text-center">AI Resume Polish</h1>
-                <p class="lead text-center">Upload your resume and get AI-powered suggestions to improve it</p>
+                <h1 class="mb-4 text-center">AI CV Polish</h1>
+                <p class="lead text-center">Improve your chances of landing your dream job!</p>
+                <p class="text-center mb-4">Use our premium CV analysis and cover letter generator to stand out from the competition.</p>
+                <div class="alert alert-info mb-4">
+                    <p class="mb-0 text-center">Many users report a 70% increase in responses after using our tools!</p>
+                </div>
                 
                 <form action="{{ url_for('analyze') }}" method="POST" enctype="multipart/form-data" class="mt-4" id="resume-form">
                     <div class="mb-4">
@@ -31,7 +35,7 @@
                         </div>
                         
                         <div id="paste-section" class="mb-3" style="display: none;">
-                            <textarea class="form-control" id="resume-text" name="resume_text" rows="10" placeholder="Paste your resume text here..."></textarea>
+                            <textarea class="form-control" id="resume-text" name="resume_text" rows="10" placeholder="Paste your CV text here..."></textarea>
                         </div>
                     </div>
                     
@@ -41,36 +45,103 @@
                     </div>
                     
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-primary btn-lg">Analyze Resume</button>
+                        <button type="submit" class="btn btn-primary btn-lg">Analyze CV</button>
                     </div>
                 </form>
             </div>
         </div>
         
-        <div class="card border-0 shadow-sm">
+        <div class="card border-0 shadow-sm mb-4">
             <div class="card-body p-4">
-                <h3>How It Works</h3>
+                <h3 class="text-center">How It Works</h3>
                 <div class="row mt-4">
                     <div class="col-md-4 mb-3">
                         <div class="text-center mb-2">
                             <i class="fas fa-upload fa-3x text-primary"></i>
                         </div>
-                        <h5 class="text-center">Upload Your Resume</h5>
-                        <p class="text-center">Upload your resume in PDF, DOCX, or TXT format or paste the text directly.</p>
+                        <h5 class="text-center">Upload Your CV</h5>
+                        <p class="text-center">Upload your CV in PDF, DOCX, or TXT format or paste the text directly.</p>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="text-center mb-2">
                             <i class="fas fa-robot fa-3x text-primary"></i>
                         </div>
                         <h5 class="text-center">AI Analysis</h5>
-                        <p class="text-center">Our AI analyzes your resume for grammar, style, and content improvements.</p>
+                        <p class="text-center">Our AI analyzes your CV for grammar, style, and content improvements.</p>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="text-center mb-2">
                             <i class="fas fa-check-circle fa-3x text-primary"></i>
                         </div>
                         <h5 class="text-center">Get Suggestions</h5>
-                        <p class="text-center">Review personalized suggestions and download your improved resume.</p>
+                        <p class="text-center">Review personalized suggestions and download your improved CV.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-body p-4">
+                <h3 class="text-center mb-4">Cover Letter Testimonials</h3>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <p class="card-text">"Thanks to the generated cover letter, I got an interview with my dream company! It perfectly highlighted my strengths and showed why I'm the right fit for the position."</p>
+                            </div>
+                            <div class="card-footer bg-transparent border-0">
+                                <p class="mb-0 text-end"><strong>Maria K.</strong>, Software Engineer</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <p class="card-text">"I had been sending resumes for a month with no response. After using your Anschreiben generator, I received three interview invitations in the first week!"</p>
+                            </div>
+                            <div class="card-footer bg-transparent border-0">
+                                <p class="mb-0 text-end"><strong>Thomas L.</strong>, Marketing Specialist</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <p class="card-text">"The personalized cover letter created by this tool impressed my current employer. The recruiter even mentioned it during the interview!"</p>
+                            </div>
+                            <div class="card-footer bg-transparent border-0">
+                                <p class="mb-0 text-end"><strong>Anna S.</strong>, Data Analyst</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4">
+                <h3 class="text-center mb-4">Our Features</h3>
+                <div class="row mt-4">
+                    <div class="col-md-4 mb-3">
+                        <div class="text-center mb-2">
+                            <i class="fas fa-brain fa-3x text-primary"></i>
+                        </div>
+                        <h5 class="text-center">AI Analysis</h5>
+                        <p class="text-center">Powerful artificial intelligence analyzes your CV and offers specific improvements.</p>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="text-center mb-2">
+                            <i class="fas fa-file-signature fa-3x text-primary"></i>
+                        </div>
+                        <h5 class="text-center">Letter Generator</h5>
+                        <p class="text-center">Creation of personalized cover letters tailored to specific job openings.</p>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="text-center mb-2">
+                            <i class="fas fa-language fa-3x text-primary"></i>
+                        </div>
+                        <h5 class="text-center">Multilingual</h5>
+                        <p class="text-center">Support for analysis in English and German for the international job market.</p>
                     </div>
                 </div>
             </div>

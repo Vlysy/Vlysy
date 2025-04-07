@@ -1,4 +1,4 @@
-// Main JavaScript for Resume Analyzer
+// Main JavaScript for CV Analyzer
 
 // Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
@@ -232,64 +232,76 @@ function animateProgressBars() {
 
 // Setup language toggle
 function setupLanguageToggle() {
-    // First handle the main form radio buttons for language selection
-    const languageRadios = document.querySelectorAll('input[name="language"]');
-    
-    if (languageRadios.length) {
-        languageRadios.forEach(radio => {
-            radio.addEventListener('change', function() {
-                // When a radio button is selected, update its label
-                const langId = this.id;
-                const langValue = this.value;
-                const langLabels = document.querySelectorAll('label[for^="lang-"]');
-                
-                // Remove active class from all labels
-                langLabels.forEach(label => {
-                    label.classList.remove('active');
-                });
-                
-                // Add active class to selected label
-                const selectedLabel = document.querySelector(`label[for="${langId}"]`);
-                if (selectedLabel) {
-                    selectedLabel.classList.add('active');
-                }
-
-                // Update nav language buttons
-                const navRadios = document.querySelectorAll('input[name="language-nav"]');
-                navRadios.forEach(navRadio => {
-                    if (navRadio.value === langValue) {
-                        navRadio.checked = true;
-                    }
-                });
-            });
-        });
-    }
-    
     // Handle the navigation language buttons
-    const navLanguageRadios = document.querySelectorAll('input[name="language-nav"]');
+    const navLangButtons = document.querySelectorAll('.language-selector-nav .btn');
+    const navLangRadios = document.querySelectorAll('input[name="language-nav"]');
+    const formLangInput = document.getElementById('language-input');
     
-    if (navLanguageRadios.length) {
-        navLanguageRadios.forEach(radio => {
-            radio.addEventListener('change', function() {
-                const langValue = this.value;
+    // Add click handler for the nav language buttons
+    navLangButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Remove active class from all buttons
+            navLangButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to clicked button
+            this.classList.add('active');
+            
+            // Get the corresponding radio button and set it as checked
+            const radioId = this.getAttribute('for');
+            const radio = document.getElementById(radioId);
+            
+            if (radio) {
+                radio.checked = true;
                 
-                // Update the hidden form language input
-                const formLanguageRadios = document.querySelectorAll('input[name="language"]');
-                formLanguageRadios.forEach(formRadio => {
-                    if (formRadio.value === langValue) {
-                        formRadio.checked = true;
-                    }
-                });
-            });
+                // Update the hidden form input
+                if (formLangInput) {
+                    formLangInput.value = radio.value;
+                    console.log('Language changed to:', radio.value);
+                }
+            }
         });
-    }
+    });
+    
+    // Add change handler for the nav language radios
+    navLangRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            // Update the hidden form input
+            if (formLangInput) {
+                formLangInput.value = this.value;
+                console.log('Language radio changed to:', this.value);
+            }
+            
+            // Update button active state
+            const label = document.querySelector(`label[for="${this.id}"]`);
+            if (label) {
+                navLangButtons.forEach(btn => btn.classList.remove('active'));
+                label.classList.add('active');
+            }
+        });
+    });
+    
+    // Initialize state based on the checked radio
+    navLangRadios.forEach(radio => {
+        if (radio.checked) {
+            const label = document.querySelector(`label[for="${radio.id}"]`);
+            if (label) {
+                navLangButtons.forEach(btn => btn.classList.remove('active'));
+                label.classList.add('active');
+            }
+            
+            // Update the hidden form input
+            if (formLangInput) {
+                formLangInput.value = radio.value;
+            }
+        }
+    });
 }
 
 // Setup score tooltips
 function setupScoreTooltips() {
     const scoreLabels = {
-        'content': 'Measures the quality, relevance, and completeness of your resume content.',
-        'format': 'Evaluates the layout, organization, and visual appeal of your resume.',
+        'content': 'Measures the quality, relevance, and completeness of your CV content.',
+        'format': 'Evaluates the layout, organization, and visual appeal of your CV.',
         'language': 'Assesses grammar, spelling, word choice, and overall writing quality.',
         'conciseness': 'Checks how efficiently you communicate information without unnecessary words.'
     };
@@ -307,7 +319,7 @@ function setupScoreTooltips() {
 
 // Helper function to navigate with language parameter
 function navigateWithLanguage(url) {
-    // Get the selected language from nav or form
+    // Get the selected language from nav
     let selectedLang = 'en'; // Default
     
     const navLangRadios = document.querySelectorAll('input[name="language-nav"]');
@@ -322,57 +334,3 @@ function navigateWithLanguage(url) {
     window.location.href = `${url}?lang=${selectedLang}`;
     return false;
 }
-
-// For language selection in navigation
-document.addEventListener('DOMContentLoaded', function() {
-    // Get language nav buttons
-    const langNavButtons = document.querySelectorAll('.language-selector-nav .btn');
-    const langRadios = document.querySelectorAll('input[name="language-nav"]');
-    
-    // Add click event to language nav buttons
-    langNavButtons.forEach(btn => {
-        btn.addEventListener('click', function() {
-            const forAttr = this.getAttribute('for');
-            const radio = document.getElementById(forAttr);
-            if (radio) {
-                radio.checked = true;
-                
-                // Also update form radio buttons
-                const langValue = radio.value;
-                const formRadios = document.querySelectorAll('input[name="language"]');
-                formRadios.forEach(formRadio => {
-                    if (formRadio.value === langValue) {
-                        formRadio.checked = true;
-                    }
-                });
-            }
-        });
-    });
-    
-    // Add change event to language nav radios
-    langRadios.forEach(radio => {
-        radio.addEventListener('change', function() {
-            // Add active class to the corresponding label
-            langNavButtons.forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            const label = document.querySelector(`label[for="${this.id}"]`);
-            if (label) {
-                label.classList.add('active');
-            }
-            
-            // Update form radios too
-            const langValue = this.value;
-            const formRadios = document.querySelectorAll('input[name="language"]');
-            formRadios.forEach(formRadio => {
-                if (formRadio.value === langValue) {
-                    formRadio.checked = true;
-                    // Trigger change event for the form radio
-                    const event = new Event('change');
-                    formRadio.dispatchEvent(event);
-                }
-            });
-        });
-    });
-});

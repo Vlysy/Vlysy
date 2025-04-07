@@ -1,387 +1,253 @@
-/* Custom styles for Resume Analyzer */
+/* Custom CSS for AI CV Polish */
 
-/* General styling & animations */
+/* General Styles */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Animations */
 .fade-in {
-    animation: fadeIn ease 0.8s;
-    -webkit-animation: fadeIn ease 0.8s;
+    opacity: 0;
+    animation: fadeIn 0.5s ease-in-out forwards;
 }
 
 @keyframes fadeIn {
-    0% { opacity: 0; transform: translateY(20px); }
-    100% { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 .slide-in {
-    animation: slideIn ease 0.5s;
-    -webkit-animation: slideIn ease 0.5s;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideIn 0.5s ease-out forwards;
 }
 
 @keyframes slideIn {
-    0% { transform: translateX(-20px); opacity: 0; }
-    100% { transform: translateX(0); opacity: 1; }
+    from { 
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .scale-in {
-    animation: scaleIn ease 0.5s;
-    -webkit-animation: scaleIn ease 0.5s;
+    opacity: 0;
+    transform: scale(0.95);
+    animation: scaleIn 0.5s ease-out forwards;
 }
 
 @keyframes scaleIn {
-    0% { transform: scale(0.9); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
+    from { 
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to { 
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
-/* Enhanced card styling */
+/* Card styling */
 .card {
-    transition: all 0.3s ease;
-    border-radius: 10px;
-    overflow: hidden;
+    border-radius: 0.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
-.card-header {
-    background-color: var(--bs-primary);
-    color: white;
-    padding: 15px 20px;
-    border-radius: 10px 10px 0 0 !important;
+/* Form styling */
+.file-upload-area {
+    border: 2px dashed var(--bs-secondary);
+    border-radius: 0.5rem;
+    padding: 2rem;
+    text-align: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    cursor: pointer;
 }
 
-/* Button enhancements */
-.btn {
-    transition: all 0.2s ease;
-    border-radius: 5px;
-    padding: 8px 16px;
+.file-upload-area:hover, .file-upload-area.drag-over {
+    background-color: rgba(13, 110, 253, 0.05);
+    border-color: var(--bs-primary);
 }
 
-.btn-primary {
+.file-name-display {
+    margin-top: 0.5rem;
+    font-weight: 500;
+}
+
+/* Resume Analysis Styling */
+.correction-item {
+    border-left: 4px solid var(--bs-primary);
+    padding-left: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.correction-explanation {
+    font-style: italic;
+    color: var(--bs-secondary);
+}
+
+.original-text {
+    position: relative;
+    background-color: rgba(255, 0, 0, 0.1);
+    text-decoration: line-through;
+    padding: 0.25rem;
+}
+
+.suggested-text {
+    position: relative;
+    background-color: rgba(0, 255, 0, 0.1);
+    padding: 0.25rem;
+}
+
+/* Overall Score Circle */
+.overall-score-circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 0 auto;
+    position: relative;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* Score Categories */
+.category-scores .progress {
+    height: 0.8rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Tooltip styling */
+.score-tooltip {
+    cursor: help;
+    position: relative;
+    border-bottom: 1px dotted var(--bs-secondary);
+}
+
+.score-tooltip:before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.5rem;
+    background-color: var(--bs-dark);
+    color: var(--bs-light);
+    border-radius: 0.25rem;
+    width: 250px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 10;
+    font-weight: normal;
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+.score-tooltip:hover:before {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Testimonial card styling */
+.testimonial-card {
+    height: 100%;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.testimonial-card .card-body {
+    position: relative;
+    padding-top: 3rem;
+}
+
+.testimonial-card .quote-icon {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 1.5rem;
+    color: var(--bs-secondary);
+    opacity: 0.5;
+}
+
+.testimonial-card .rating {
+    color: var(--bs-warning);
+}
+
+/* Language Selector */
+.language-nav-item .btn-group .btn {
+    font-weight: bold;
+    min-width: 40px;
+}
+
+.language-nav-item .btn-group .btn.active {
+    color: var(--bs-light);
     background-color: var(--bs-primary);
     border-color: var(--bs-primary);
 }
 
-.btn-primary:hover {
-    background-color: var(--bs-primary-dark, #0056b3);
-    border-color: var(--bs-primary-dark, #0056b3);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.btn-outline-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Progress tracker styling */
-.progress-tracker {
-    margin-bottom: 30px;
-}
-
-.progress-tracker .progress {
-    height: 4px;
-    background-color: #e9ecef;
-    margin-bottom: 10px;
-}
-
-.progress-tracker .step-completed,
-.progress-tracker .step-active {
-    font-weight: 600;
-}
-
-.progress-tracker .step-active {
-    color: var(--bs-primary);
-}
-
-.progress-tracker .step-completed {
-    color: var(--bs-success);
-}
-
-.progress-tracker .step {
-    color: var(--bs-secondary);
-}
-
-/* Resume score visualization */
-.overall-score-circle {
-    transition: all 0.8s ease-out;
+/* Custom Button Animation */
+.btn-primary {
     position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: all 0.3s ease;
 }
 
-.category-scores .progress-bar {
-    transition: width 1s ease-out;
-}
-
-/* Tooltips for score categories */
-.score-tooltip {
-    position: relative;
-    cursor: pointer;
-}
-
-.score-tooltip:hover::after {
-    content: attr(data-tooltip);
+.btn-primary:after {
+    content: "";
     position: absolute;
-    left: 0;
-    top: 100%;
-    background: var(--bs-dark);
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 0.8rem;
-    width: 220px;
-    z-index: 100;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: all 0.6s ease;
+    z-index: -1;
 }
 
-/* File upload area enhancement */
-.file-upload-area {
-    border: 2px dashed var(--bs-primary);
-    padding: 30px;
-    border-radius: 10px;
-    text-align: center;
-    transition: all 0.3s ease;
-    background-color: rgba(var(--bs-primary-rgb), 0.05);
-    margin-bottom: 20px;
+.btn-primary:hover:after {
+    left: 100%;
 }
 
-.file-upload-area:hover {
-    background-color: rgba(var(--bs-primary-rgb), 0.1);
-}
-
-.file-upload-area.drag-over {
-    background-color: rgba(var(--bs-primary-rgb), 0.15);
-    border-color: var(--bs-primary-dark, #0056b3);
-}
-
-/* Improvement suggestions styling */
-.correction-item {
-    margin-bottom: 15px;
-    padding: 15px;
-    border-radius: 8px;
-    background-color: rgba(var(--bs-primary-rgb), 0.05);
-    border-left: 4px solid var(--bs-primary);
-    transition: all 0.3s ease;
-}
-
-.correction-item:hover {
-    background-color: rgba(var(--bs-primary-rgb), 0.1);
-    transform: translateX(5px);
-}
-
-.correction-explanation {
-    color: var(--bs-secondary);
-    font-size: 0.9rem;
-    margin-top: 10px;
-}
-
-/* Recommendation page specific styles */
-.recommendation-item {
-    padding: 15px;
-    border-radius: 8px;
-    background-color: rgba(var(--bs-light-rgb), 0.5);
-    margin-bottom: 20px;
-    border-left: 4px solid var(--bs-primary);
-    transition: all 0.3s ease;
-}
-
-.recommendation-item:hover {
-    background-color: rgba(var(--bs-light-rgb), 0.8);
-}
-
-/* Testimonials section */
-.testimonial-card {
-    padding: 25px;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    background-color: rgba(var(--bs-light-rgb), 0.5);
-    position: relative;
-}
-
-.testimonial-card::before {
-    content: """;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    font-size: 60px;
-    color: rgba(var(--bs-primary-rgb), 0.1);
-    line-height: 1;
-}
-
-.testimonial-author {
-    font-weight: 600;
-    margin-bottom: 0;
-}
-
-.testimonial-position {
-    color: var(--bs-secondary);
-    font-size: 0.9rem;
-}
-
-/* Star rating display */
-.star-rating .bi-star-fill {
-    color: #ffc107;
-}
-
-/* Language selector enhancement */
-.language-selector {
-    padding: 10px;
-    border-radius: 5px;
-    background-color: rgba(var(--bs-light-rgb), 0.5);
-    display: inline-block;
-    margin-bottom: 20px;
-}
-
-.language-selector .btn-group label {
-    transition: all 0.3s ease;
-}
-
-/* Mobile responsiveness improvements */
+/* Responsive adjustments */
 @media (max-width: 768px) {
-    .file-upload-area {
-        padding: 20px;
+    .overall-score-circle {
+        width: 120px;
+        height: 120px;
+        font-size: 2.5rem;
     }
     
     .correction-item {
-        margin-bottom: 10px;
-        padding: 10px;
-    }
-    
-    .overall-score-circle {
-        width: 100px !important;
-        height: 100px !important;
-    }
-    
-    .overall-score-circle > div {
-        width: 80px !important;
-        height: 80px !important;
+        padding-left: 0.75rem;
+        margin-bottom: 1rem;
     }
 }
 
-/* Dark mode optimization */
-[data-bs-theme=dark] .file-upload-area {
-    background-color: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.2);
-}
-
-[data-bs-theme=dark] .file-upload-area:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-[data-bs-theme=dark] .correction-item,
-[data-bs-theme=dark] .recommendation-item {
-    background-color: rgba(255, 255, 255, 0.05);
-}
-
-[data-bs-theme=dark] .correction-item:hover,
-[data-bs-theme=dark] .recommendation-item:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-/* Custom tooltip styling */
-.custom-tooltip {
-    position: relative;
-    display: inline-block;
-}
-
-.custom-tooltip .tooltip-text {
-    visibility: hidden;
-    width: 200px;
-    background-color: var(--bs-dark);
-    color: white;
-    text-align: center;
-    border-radius: 6px;
-    padding: 10px;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -100px;
-    opacity: 0;
-    transition: opacity 0.3s;
-    font-size: 0.9rem;
-}
-
-.custom-tooltip .tooltip-text::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: var(--bs-dark) transparent transparent transparent;
-}
-
-.custom-tooltip:hover .tooltip-text {
-    visibility: visible;
-    opacity: 1;
-}
-
-/* Active language button styling */
-.btn-check:checked + .btn-outline-secondary, 
-.btn-outline-secondary.active {
-    background-color: var(--bs-secondary);
-    color: #fff;
-    border-color: var(--bs-secondary);
-}
-
-/* Language selector in navigation */
-.language-nav-item {
-    display: flex;
-    align-items: center;
-}
-
-.language-selector-nav {
-    margin-left: 10px;
-}
-
-.language-selector-nav .btn {
-    padding: 0.25rem 0.5rem;
-    font-size: 0.8rem;
-}
-
+/* Mobile Language Selector Styling */
 @media (max-width: 992px) {
     .language-nav-item {
-        margin-top: 10px;
-        margin-bottom: 5px;
-    }
-    
-    .language-selector-nav {
-        margin-left: 0;
-        width: 100%;
-    }
-    
-    .language-selector-nav .btn {
-        flex: 1;
-    }
-}
-
-/* Language selector in navigation */
-.language-nav-item {
-    display: flex;
-    align-items: center;
-}
-
-.language-selector-nav {
-    margin-left: 10px;
-}
-
-.language-selector-nav .btn {
-    padding: 0.25rem 0.5rem;
-    font-size: 0.8rem;
-}
-
-@media (max-width: 992px) {
-    .language-nav-item {
-        margin-top: 10px;
-        margin-bottom: 5px;
-    }
-    
-    .language-selector-nav {
-        margin-left: 0;
-        width: 100%;
-    }
-    
-    .language-selector-nav .btn {
-        flex: 1;
+        display: flex;
+        justify-content: center;
+        margin-top: 1rem;
+        margin-left: 0 !important;
     }
 }
