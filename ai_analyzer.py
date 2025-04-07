@@ -10,6 +10,15 @@ from datetime import datetime
 GROQ_API_KEY = os.environ.get("XAI_API_KEY", "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")
 GROQ_MODEL = "llama3-70b-8192"  # Using Llama-3 70B model
 
+# DeepInfra API configuration (fallback)
+DEEPINFRA_API_URL = "https://api.deepinfra.com/v1/openai/chat/completions" 
+DEEPINFRA_MODEL = "meta-llama/Meta-Llama-3-70B-Instruct"
+DEEPINFRA_API_KEY = os.environ.get("DEEPINFRA_API_KEY", "")
+deepinfra_headers = {
+    "Content-Type": "application/json",
+    "Authorization": f"Bearer {DEEPINFRA_API_KEY}"
+}
+
 # Initialize Groq client
 groq_client = None
 try:
