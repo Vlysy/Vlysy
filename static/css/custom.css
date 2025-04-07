@@ -1,92 +1,317 @@
-/* Custom CSS styles */
+/* Custom styles for Resume Analyzer */
 
-/* General styling enhancements */
-body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+/* General styling & animations */
+.fade-in {
+    animation: fadeIn ease 0.8s;
+    -webkit-animation: fadeIn ease 0.8s;
 }
 
-.container {
-    flex: 1;
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
-/* Card styling */
+.slide-in {
+    animation: slideIn ease 0.5s;
+    -webkit-animation: slideIn ease 0.5s;
+}
+
+@keyframes slideIn {
+    0% { transform: translateX(-20px); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+}
+
+.scale-in {
+    animation: scaleIn ease 0.5s;
+    -webkit-animation: scaleIn ease 0.5s;
+}
+
+@keyframes scaleIn {
+    0% { transform: scale(0.9); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Enhanced card styling */
 .card {
-    transition: transform 0.2s ease;
+    transition: all 0.3s ease;
     border-radius: 10px;
+    overflow: hidden;
 }
 
 .card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Custom form styling */
-.form-control:focus, .form-select:focus {
-    box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
-}
-
-/* Resume text area styling */
-#resume-text, #anschreiben-text, #job-description {
-    font-family: 'Courier New', monospace;
-    font-size: 0.9rem;
-    line-height: 1.5;
-}
-
-/* Correction table styling */
-.correction-row:hover {
-    background-color: rgba(var(--bs-primary-rgb), 0.05);
-}
-
-.correction-checkbox {
-    cursor: pointer;
+.card-header {
+    background-color: var(--bs-primary);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px 10px 0 0 !important;
 }
 
 /* Button enhancements */
 .btn {
-    border-radius: 6px;
+    transition: all 0.2s ease;
+    border-radius: 5px;
+    padding: 8px 16px;
 }
 
-.btn-primary, .btn-success {
-    font-weight: 500;
-}
-
-/* Footer styling */
-footer {
-    margin-top: auto;
-}
-
-/* Progress bar custom styling */
-.progress {
-    background-color: rgba(var(--bs-secondary-rgb), 0.2);
-    border-radius: 10px;
-}
-
-.progress-bar {
+.btn-primary {
     background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--bs-primary-dark, #0056b3);
+    border-color: var(--bs-primary-dark, #0056b3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-outline-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Progress tracker styling */
+.progress-tracker {
+    margin-bottom: 30px;
+}
+
+.progress-tracker .progress {
+    height: 4px;
+    background-color: #e9ecef;
+    margin-bottom: 10px;
+}
+
+.progress-tracker .step-completed,
+.progress-tracker .step-active {
+    font-weight: 600;
+}
+
+.progress-tracker .step-active {
+    color: var(--bs-primary);
+}
+
+.progress-tracker .step-completed {
+    color: var(--bs-success);
+}
+
+.progress-tracker .step {
+    color: var(--bs-secondary);
+}
+
+/* Resume score visualization */
+.overall-score-circle {
+    transition: all 0.8s ease-out;
+    position: relative;
+}
+
+.category-scores .progress-bar {
+    transition: width 1s ease-out;
+}
+
+/* Tooltips for score categories */
+.score-tooltip {
+    position: relative;
+    cursor: pointer;
+}
+
+.score-tooltip:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background: var(--bs-dark);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    width: 220px;
+    z-index: 100;
+}
+
+/* File upload area enhancement */
+.file-upload-area {
+    border: 2px dashed var(--bs-primary);
+    padding: 30px;
     border-radius: 10px;
+    text-align: center;
+    transition: all 0.3s ease;
+    background-color: rgba(var(--bs-primary-rgb), 0.05);
+    margin-bottom: 20px;
 }
 
-/* Add icon animation */
-.fa-3x {
-    transition: transform 0.3s ease;
+.file-upload-area:hover {
+    background-color: rgba(var(--bs-primary-rgb), 0.1);
 }
 
-.card:hover .fa-3x {
-    transform: scale(1.1);
+.file-upload-area.drag-over {
+    background-color: rgba(var(--bs-primary-rgb), 0.15);
+    border-color: var(--bs-primary-dark, #0056b3);
 }
 
-/* Additional responsive adjustments */
+/* Improvement suggestions styling */
+.correction-item {
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: rgba(var(--bs-primary-rgb), 0.05);
+    border-left: 4px solid var(--bs-primary);
+    transition: all 0.3s ease;
+}
+
+.correction-item:hover {
+    background-color: rgba(var(--bs-primary-rgb), 0.1);
+    transform: translateX(5px);
+}
+
+.correction-explanation {
+    color: var(--bs-secondary);
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+/* Recommendation page specific styles */
+.recommendation-item {
+    padding: 15px;
+    border-radius: 8px;
+    background-color: rgba(var(--bs-light-rgb), 0.5);
+    margin-bottom: 20px;
+    border-left: 4px solid var(--bs-primary);
+    transition: all 0.3s ease;
+}
+
+.recommendation-item:hover {
+    background-color: rgba(var(--bs-light-rgb), 0.8);
+}
+
+/* Testimonials section */
+.testimonial-card {
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: rgba(var(--bs-light-rgb), 0.5);
+    position: relative;
+}
+
+.testimonial-card::before {
+    content: """;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 60px;
+    color: rgba(var(--bs-primary-rgb), 0.1);
+    line-height: 1;
+}
+
+.testimonial-author {
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.testimonial-position {
+    color: var(--bs-secondary);
+    font-size: 0.9rem;
+}
+
+/* Star rating display */
+.star-rating .bi-star-fill {
+    color: #ffc107;
+}
+
+/* Language selector enhancement */
+.language-selector {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(var(--bs-light-rgb), 0.5);
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.language-selector .btn-group label {
+    transition: all 0.3s ease;
+}
+
+/* Mobile responsiveness improvements */
 @media (max-width: 768px) {
-    .card-body {
-        padding: 1.25rem;
+    .file-upload-area {
+        padding: 20px;
     }
     
-    h1, h2 {
-        font-size: 1.75rem;
+    .correction-item {
+        margin-bottom: 10px;
+        padding: 10px;
     }
     
-    h3 {
-        font-size: 1.5rem;
+    .overall-score-circle {
+        width: 100px !important;
+        height: 100px !important;
     }
+    
+    .overall-score-circle > div {
+        width: 80px !important;
+        height: 80px !important;
+    }
+}
+
+/* Dark mode optimization */
+[data-bs-theme=dark] .file-upload-area {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-bs-theme=dark] .file-upload-area:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-bs-theme=dark] .correction-item,
+[data-bs-theme=dark] .recommendation-item {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+[data-bs-theme=dark] .correction-item:hover,
+[data-bs-theme=dark] .recommendation-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Custom tooltip styling */
+.custom-tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.custom-tooltip .tooltip-text {
+    visibility: hidden;
+    width: 200px;
+    background-color: var(--bs-dark);
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 10px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.9rem;
+}
+
+.custom-tooltip .tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--bs-dark) transparent transparent transparent;
+}
+
+.custom-tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
 }

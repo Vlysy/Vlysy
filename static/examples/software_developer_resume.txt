@@ -1,0 +1,63 @@
+JOHN SMITH
+Berlin, Germany | +49 123 456 7890 | john.smith@email.com | linkedin.com/in/johnsmith
+github.com/johnsmith
+
+PROFESSIONAL SUMMARY
+Experienced Software Developer with 5+ years of expertise in full-stack development, specializing in Python, JavaScript, and cloud technologies. Proven track record of delivering scalable, high-performance applications for enterprise clients. Passionate about clean code practices and building innovative solutions that drive business growth.
+
+TECHNICAL SKILLS
+• Languages: Python, JavaScript, TypeScript, SQL, HTML5, CSS3
+• Frameworks: Django, Flask, React, Node.js, Express
+• Cloud & DevOps: AWS, Docker, Kubernetes, CI/CD pipelines
+• Tools: Git, Jira, Confluence, VS Code, PyCharm
+• Methodologies: Agile/Scrum, Test-Driven Development
+
+PROFESSIONAL EXPERIENCE
+
+SENIOR SOFTWARE DEVELOPER
+TechSolutions GmbH, Berlin | January 2021 - Present
+• Developed and maintained cloud-based enterprise applications using Python and AWS, reducing system downtime by 35%
+• Led a team of 4 developers implementing microservices architecture, improving scalability and deployment speed
+• Designed and implemented RESTful APIs serving over 10,000 daily requests with 99.9% uptime
+• Collaborated with product managers to define technical requirements and project timelines
+• Mentored junior developers through code reviews and pair programming sessions
+
+SOFTWARE DEVELOPER
+Digital Innovations AG, Munich | March 2018 - December 2020
+• Built responsive web applications using React.js and Node.js for clients in finance and healthcare sectors
+• Implemented automated testing strategies resulting in 40% reduction in post-release defects
+• Optimized database queries and application performance, reducing page load times by 60%
+• Participated in Agile ceremonies including daily stand-ups, sprint planning, and retrospectives
+• Integrated third-party APIs and services to enhance application functionality
+
+JUNIOR DEVELOPER
+StartUp Tech, Berlin | June 2016 - February 2018
+• Assisted in developing front-end features using HTML5, CSS3, and JavaScript
+• Created and maintained documentation for internal systems and processes
+• Fixed bugs and implemented minor feature enhancements for existing web applications
+• Performed code refactoring to improve readability and maintainability
+
+EDUCATION
+TECHNICAL UNIVERSITY OF BERLIN
+Bachelor of Science in Computer Science | 2012 - 2016
+• Focus on Software Engineering and Distributed Systems
+• Relevant coursework: Algorithms, Data Structures, Database Systems, Web Development
+
+CERTIFICATIONS
+• AWS Certified Developer - Associate (2022)
+• Professional Scrum Master I (PSM I) (2020)
+• MongoDB Certified Developer (2019)
+
+LANGUAGES
+• English (Fluent)
+• German (Native)
+• Spanish (Intermediate)
+
+PROJECTS
+E-COMMERCE PLATFORM REDESIGN
+• Redesigned legacy e-commerce system using modern technologies, resulting in 45% increase in user engagement
+• Implemented secure payment processing and inventory management features
+
+OPEN-SOURCE CONTRIBUTION
+• Active contributor to Python libraries for data processing and visualization
+• Created and maintained Node.js utility package with 500+ weekly downloads

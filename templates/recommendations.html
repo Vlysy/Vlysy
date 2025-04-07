@@ -1,0 +1,237 @@
+{% extends 'layout.html' %}
+
+{% block title %}Personalized Recommendations - Resume Analyzer{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row mb-4">
+        <div class="col-lg-10 mx-auto">
+            <h1 class="display-5 mb-4 text-center">Your Personalized Recommendations</h1>
+            <p class="lead text-center mb-5">Based on your resume analysis, we've prepared these customized recommendations to help you stand out to employers.</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-10 mx-auto">
+            <!-- Progress tracker -->
+            <div class="progress-tracker mb-5">
+                <div class="progress" style="height: 4px;">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <div class="d-flex justify-content-between mt-2">
+                    <span class="step-completed">Upload</span>
+                    <span class="step-completed">Analyze</span>
+                    <span class="step-active">Recommendations</span>
+                    <span class="step">Download</span>
+                </div>
+            </div>
+
+            <!-- Resume score summary (same as in results page) -->
+            <div class="card mb-5 border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-md-4 text-center border-end">
+                            <div class="overall-score-circle mx-auto mb-3" style="width: 120px; height: 120px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: conic-gradient(#28a745 0% {{ (score.overall / 100) * 100 }}%, #e9ecef {{ (score.overall / 100) * 100 }}% 100%);">
+                                <div style="width: 100px; height: 100px; border-radius: 50%; background-color: #343a40; display: flex; align-items: center; justify-content: center;">
+                                    <span class="fs-2 fw-bold text-white">{{ score.overall }}</span>
+                                </div>
+                            </div>
+                            <h3 class="h5">Overall Score</h3>
+                            <p class="text-muted">{{ score.summary }}</p>
+                        </div>
+                        <div class="col-md-8">
+                            <h3 class="h5 mb-3">Category Scores</h3>
+                            <div class="category-scores">
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span>Content</span>
+                                        <span>{{ score.categories.content }}/100</span>
+                                    </div>
+                                    <div class="progress" style="height: 8px;">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: {{ score.categories.content }}%;" aria-valuenow="{{ score.categories.content }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span>Format</span>
+                                        <span>{{ score.categories.format }}/100</span>
+                                    </div>
+                                    <div class="progress" style="height: 8px;">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: {{ score.categories.format }}%;" aria-valuenow="{{ score.categories.format }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span>Language</span>
+                                        <span>{{ score.categories.language }}/100</span>
+                                    </div>
+                                    <div class="progress" style="height: 8px;">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: {{ score.categories.language }}%;" aria-valuenow="{{ score.categories.language }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span>Conciseness</span>
+                                        <span>{{ score.categories.conciseness }}/100</span>
+                                    </div>
+                                    <div class="progress" style="height: 8px;">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: {{ score.categories.conciseness }}%;" aria-valuenow="{{ score.categories.conciseness }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Personalized recommendations based on score -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="h5 mb-0">Key Improvement Areas</h3>
+                </div>
+                <div class="card-body p-4">
+                    <div class="alert alert-info">
+                        <strong>Note:</strong> These recommendations are personalized based on your resume's evaluation. Focus on the areas where your score is lowest for maximum improvement.
+                    </div>
+
+                    {% if score.categories.content < 70 %}
+                    <div class="recommendation-item mb-4">
+                        <h4 class="h6"><i class="bi bi-arrow-up-circle-fill text-primary me-2"></i>Improve Content Quality</h4>
+                        <p>Your resume's content score indicates room for improvement. Consider these recommendations:</p>
+                        <ul>
+                            <li>Add more quantifiable achievements (numbers, percentages, metrics)</li>
+                            <li>Include relevant technical skills and keywords from job descriptions</li>
+                            <li>Highlight specific projects and their impact on business outcomes</li>
+                            <li>Focus on achievements rather than job responsibilities</li>
+                        </ul>
+                    </div>
+                    {% endif %}
+
+                    {% if score.categories.format < 70 %}
+                    <div class="recommendation-item mb-4">
+                        <h4 class="h6"><i class="bi bi-layout-text-window-reverse text-primary me-2"></i>Enhance Resume Format</h4>
+                        <p>Your format score suggests some structural improvements:</p>
+                        <ul>
+                            <li>Use a clean, professional layout with consistent formatting</li>
+                            <li>Organize information in reverse-chronological order</li>
+                            <li>Use bullet points for better readability</li>
+                            <li>Ensure proper section headings (Professional Experience, Education, Skills)</li>
+                            <li>Maintain consistent spacing and margins throughout</li>
+                        </ul>
+                    </div>
+                    {% endif %}
+
+                    {% if score.categories.language < 70 %}
+                    <div class="recommendation-item mb-4">
+                        <h4 class="h6"><i class="bi bi-pencil-square text-primary me-2"></i>Improve Language Quality</h4>
+                        <p>Your language score indicates some improvements in writing style:</p>
+                        <ul>
+                            <li>Start bullet points with strong action verbs (Managed, Developed, Led)</li>
+                            <li>Remove unnecessary words and phrases</li>
+                            <li>Fix grammar and spelling errors highlighted in our analysis</li>
+                            <li>Use industry-specific terminology relevant to your field</li>
+                            <li>Avoid first-person pronouns (I, me, my)</li>
+                        </ul>
+                    </div>
+                    {% endif %}
+
+                    {% if score.categories.conciseness < 70 %}
+                    <div class="recommendation-item mb-4">
+                        <h4 class="h6"><i class="bi bi-scissors text-primary me-2"></i>Improve Conciseness</h4>
+                        <p>Your conciseness score suggests your resume could be more direct:</p>
+                        <ul>
+                            <li>Limit descriptions to 3-5 bullet points per position</li>
+                            <li>Keep bullet points to 1-2 lines each</li>
+                            <li>Remove outdated or irrelevant experiences</li>
+                            <li>Focus on the last 10 years of experience</li>
+                            <li>Eliminate redundant information across sections</li>
+                        </ul>
+                    </div>
+                    {% endif %}
+
+                    <!-- General recommendation for everyone -->
+                    <div class="recommendation-item">
+                        <h4 class="h6"><i class="bi bi-lightbulb-fill text-primary me-2"></i>General Recommendations</h4>
+                        <p>These tips apply to most resumes:</p>
+                        <ul>
+                            <li>Tailor your resume for each specific job application</li>
+                            <li>Use industry keywords to pass Applicant Tracking Systems (ATS)</li>
+                            <li>Include a LinkedIn profile and ensure it matches your resume</li>
+                            <li>Consider creating a professional portfolio or website</li>
+                            <li>Ask a trusted colleague to review your final resume</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Industry-specific tips based on detected skills -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="h5 mb-0">Industry-Specific Recommendations</h3>
+                </div>
+                <div class="card-body p-4">
+                    <p>Based on the skills and experience detected in your resume, these industry-specific tips may help:</p>
+                    
+                    {% if 'industry_tips' in recommendations %}
+                        {% for tip in recommendations.industry_tips %}
+                        <div class="recommendation-item mb-4">
+                            <h4 class="h6">{{ tip.title }}</h4>
+                            <p>{{ tip.description }}</p>
+                            <ul>
+                                {% for item in tip.items %}
+                                <li>{{ item }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <!-- Default industry tips when none are provided -->
+                        <div class="recommendation-item mb-4">
+                            <h4 class="h6"><i class="bi bi-code-slash text-primary me-2"></i>Technology / IT</h4>
+                            <p>If you're in the technology field:</p>
+                            <ul>
+                                <li>List programming languages and technologies in order of proficiency</li>
+                                <li>Include GitHub/GitLab repositories or portfolio website</li>
+                                <li>Highlight specific technical problems you've solved</li>
+                                <li>Mention contributions to open-source projects or hackathons</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="recommendation-item mb-4">
+                            <h4 class="h6"><i class="bi bi-briefcase-fill text-primary me-2"></i>Business / Management</h4>
+                            <p>If you're in business or management:</p>
+                            <ul>
+                                <li>Highlight cost-saving initiatives and their financial impact</li>
+                                <li>Emphasize leadership and team management experiences</li>
+                                <li>Include metrics on team performance improvements</li>
+                                <li>Showcase project management methodologies you're familiar with</li>
+                            </ul>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Next steps -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="h5 mb-0">Next Steps</h3>
+                </div>
+                <div class="card-body p-4">
+                    <p>Now that you've reviewed your personalized recommendations, here are your next steps:</p>
+                    <div class="d-flex flex-column flex-md-row mt-4">
+                        <a href="{{ url_for('results') }}" class="btn btn-outline-primary mb-3 mb-md-0 me-md-3">
+                            <i class="bi bi-arrow-left me-2"></i>Return to Analysis
+                        </a>
+                        <a href="{{ url_for('anschreiben_page') }}" class="btn btn-outline-primary mb-3 mb-md-0 me-md-3">
+                            <i class="bi bi-file-earmark-text me-2"></i>Create Cover Letter
+                        </a>
+                        <a href="{{ url_for('examples') }}" class="btn btn-outline-primary">
+                            <i class="bi bi-file-earmark-check me-2"></i>View Example Resumes
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

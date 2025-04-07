@@ -1,0 +1,227 @@
+{% extends 'layout.html' %}
+
+{% block title %}FAQ - Resume Analyzer{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row mb-4">
+        <div class="col-lg-8 mx-auto">
+            <h1 class="display-5 mb-4 text-center">Frequently Asked Questions</h1>
+            <p class="lead text-center mb-5">Find answers to commonly asked questions about our Resume Analyzer tool.</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="accordion" id="faqAccordion">
+                <!-- General Questions -->
+                <div class="card border-0 mb-3">
+                    <div class="card-header bg-transparent border-0">
+                        <h2 class="mb-0">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="h5 mb-0">General Questions</span>
+                            </div>
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            What is Resume Analyzer?
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <p>Resume Analyzer is an AI-powered tool that helps you improve your resume by providing detailed feedback, suggestions, and corrections. The tool analyzes your resume for common issues, evaluates its effectiveness, and gives you practical recommendations to make it more attractive to employers.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            How does Resume Analyzer work?
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <p>Our tool uses advanced AI algorithms to analyze your resume content. Here's how it works:</p>
+                            <ol>
+                                <li>Upload your resume (PDF, DOCX, or TXT) or paste your resume text</li>
+                                <li>Select your preferred language (English or German)</li>
+                                <li>Our AI analyzes your resume for style, content, grammar, and format issues</li>
+                                <li>You receive a comprehensive analysis with specific suggestions</li>
+                                <li>Apply the improvements and download your enhanced resume</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Is my data secure and private?
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <p>Yes, we take data privacy seriously. Your resume information is used only for analysis purposes and is never shared with third parties without your consent. Your data is processed securely, and we do not store your personal information longer than necessary for providing our service.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Features Questions -->
+                <div class="card border-0 mb-3 mt-5">
+                    <div class="card-header bg-transparent border-0">
+                        <h2 class="mb-0">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="h5 mb-0">Features & Functionality</span>
+                            </div>
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            What file formats are supported?
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <p>Our tool supports the following file formats:</p>
+                            <ul>
+                                <li>PDF (.pdf)</li>
+                                <li>Microsoft Word (.docx)</li>
+                                <li>Plain Text (.txt)</li>
+                            </ul>
+                            <p>You can also paste your resume text directly into our text area if you prefer not to upload a file.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingFive">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            What languages are supported?
+                        </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <p>Currently, our tool supports:</p>
+                            <ul>
+                                <li>English</li>
+                                <li>German</li>
+                            </ul>
+                            <p>We are working on adding support for additional languages in the future.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingSix">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                            What is the Anschreiben generator?
+                        </button>
+                    </h2>
+                    <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <p>The Anschreiben (cover letter) generator is a feature that automatically creates a personalized German-style cover letter based on your resume and a job description. To use this feature:</p>
+                            <ol>
+                                <li>First analyze your resume</li>
+                                <li>Go to the Anschreiben page</li>
+                                <li>Paste the job description you're applying for</li>
+                                <li>Generate your customized cover letter</li>
+                                <li>Download the generated Anschreiben as a text file</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technical Questions -->
+                <div class="card border-0 mb-3 mt-5">
+                    <div class="card-header bg-transparent border-0">
+                        <h2 class="mb-0">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="h5 mb-0">Technical Support</span>
+                            </div>
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingSeven">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                            My file won't upload. What should I do?
+                        </button>
+                    </h2>
+                    <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <p>If you're having trouble uploading your file, please try these steps:</p>
+                            <ol>
+                                <li>Check that your file is in a supported format (PDF, DOCX, or TXT)</li>
+                                <li>Ensure your file size is under 10MB</li>
+                                <li>Try a different browser (Chrome, Firefox, Safari)</li>
+                                <li>If using a PDF, make sure it's not password-protected</li>
+                                <li>As an alternative, copy-paste your resume text into the text area</li>
+                            </ol>
+                            <p>If you continue to experience issues, please contact us for support.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingEight">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                            How do I interpret my resume score?
+                        </button>
+                    </h2>
+                    <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <p>Your resume score is calculated based on several key categories:</p>
+                            <ul>
+                                <li><strong>Content (25%):</strong> Quality and relevance of information</li>
+                                <li><strong>Format (25%):</strong> Layout, organization, and visual appeal</li>
+                                <li><strong>Language (25%):</strong> Grammar, spelling, and word choice</li>
+                                <li><strong>Conciseness (25%):</strong> Clarity and efficient communication</li>
+                            </ul>
+                            <p>Score ranges:</p>
+                            <ul>
+                                <li>90-100: Excellent - Your resume is highly effective</li>
+                                <li>70-89: Good - Minor improvements needed</li>
+                                <li>50-69: Average - Several improvements recommended</li>
+                                <li>Below 50: Needs significant improvement</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingNine">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                            Where can I find example resumes?
+                        </button>
+                    </h2>
+                    <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <p>We provide example resumes for different professions that you can download and use as templates:</p>
+                            <ul>
+                                <li><a href="/examples" class="text-decoration-none">Example Resumes Page</a></li>
+                                <li>You can also find examples on our main page in the "Resume Templates" section</li>
+                            </ul>
+                            <p>These examples follow best practices and are designed to score well in our analysis tool.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mt-5">
+        <div class="col-lg-8 mx-auto text-center">
+            <p>Still have questions? Contact us at <a href="mailto:support@resumeanalyzer.com" class="text-decoration-none">support@resumeanalyzer.com</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

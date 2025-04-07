@@ -7,7 +7,7 @@ import traceback
 from datetime import datetime
 
 # Groq API configuration
-GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "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")
+GROQ_API_KEY = os.environ.get("XAI_API_KEY", "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")
 GROQ_MODEL = "llama3-70b-8192"  # Using Llama-3 70B model
 
 # Initialize Groq client

@@ -201,7 +201,9 @@ def index():
             session.pop(key)
     
     logging.info("Rendering index page")
-    return render_template('index.html')
+    # Get some example testimonials for display
+    testimonials = Testimonial.query.filter_by(approved=True).order_by(Testimonial.created_at.desc()).limit(3).all()
+    return render_template('index.html', testimonials=testimonials)
 
 @app.route('/analyze', methods=['POST'])
 def analyze():
@@ -652,6 +654,59 @@ def handle_exception(e):
     logging.error(f"Unhandled exception: {str(e)}")
     logging.error(traceback.format_exc())
     return render_template('500.html'), 500
+
+# New routes for additional features
+@app.route('/faq')
+def faq():
+    """Display the FAQ page with common questions and answers."""
+    return render_template('faq.html')
+
+@app.route('/examples')
+def examples():
+    """Display example resumes that users can download as templates."""
+    return render_template('examples.html')
+
+@app.route('/recommendations')
+def recommendations():
+    """Display personalized recommendations based on resume analysis."""
+    # Check if CV and score data are in session
+    if 'resume_text' not in session or 'resume_score' not in session:
+        flash('Please submit a CV for analysis first.', 'warning')
+        return redirect(url_for('index'))
+    
+    resume_text = session.get('resume_text', '')
+    score_data = session.get('resume_score', {})
+    
+    # Placeholder for industry-specific recommendations
+    # In a full implementation, this would be generated using AI based on detected skills
+    industry_recommendations = {
+        'industry_tips': [
+            {
+                'title': 'Technology / IT',
+                'description': 'If you\'re in the technology field:',
+                'items': [
+                    'List programming languages and technologies in order of proficiency',
+                    'Include GitHub/GitLab repositories or portfolio website',
+                    'Highlight specific technical problems you\'ve solved',
+                    'Mention contributions to open-source projects or hackathons'
+                ]
+            },
+            {
+                'title': 'Business / Management',
+                'description': 'If you\'re in business or management:',
+                'items': [
+                    'Highlight cost-saving initiatives and their financial impact',
+                    'Emphasize leadership and team management experiences',
+                    'Include metrics on team performance improvements',
+                    'Showcase project management methodologies you\'re familiar with'
+                ]
+            }
+        ]
+    }
+    
+    return render_template('recommendations.html', 
+                           score=score_data, 
+                           recommendations=industry_recommendations)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
