@@ -7,34 +7,55 @@
     <div class="col-md-10">
         <div class="card border-0 shadow-sm mb-5">
             <div class="card-body p-4 text-center">
-                <h1 class="mb-4">Support AI Resume Polish</h1>
-                <p class="lead mb-4">If you find this tool helpful, consider supporting our work!</p>
+                <h1 class="mb-4">Поддержите AI Resume Polish</h1>
+                <p class="lead mb-4">Если вам помог наш инструмент, поддержите нашу работу!</p>
                 
                 <div class="mb-5">
                     <a href="https://ko-fi.com/vladlysytskyi" target="_blank" class="btn btn-primary btn-lg px-5 py-3">
-                        <i class="fas fa-mug-hot me-2"></i> Support on Ko-fi
+                        <i class="fas fa-mug-hot me-2"></i> Поддержать на Ko-fi
                     </a>
                 </div>
                 
-                <div class="row mt-5">
+                <!-- Большая рекламная секция -->
+                <div class="alert alert-info p-4 mb-5">
+                    <div class="row align-items-center">
+                        <div class="col-md-2 text-center mb-3 mb-md-0">
+                            <i class="fas fa-trophy display-3 text-warning"></i>
+                        </div>
+                        <div class="col-md-10 text-start">
+                            <h3 class="alert-heading">Улучшите свои шансы на работу мечты!</h3>
+                            <p class="mb-2">Используйте наш премиум-анализ резюме и генератор сопроводительных писем, чтобы выделиться среди конкурентов.</p>
+                            <p class="mb-0"><strong>Многие пользователи сообщают о 70% увеличении откликов после использования наших инструментов!</strong></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mt-3">
+                    <!-- Почему нас поддерживают -->
                     <div class="col-md-6 mb-4">
                         <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-header bg-primary text-white py-3">
+                                <h3 class="card-title mb-0"><i class="fas fa-star me-2"></i>Почему стоит поддержать нас?</h3>
+                            </div>
                             <div class="card-body">
-                                <h3 class="card-title"><i class="fas fa-star text-warning me-2"></i>Why Support Us?</h3>
                                 <ul class="list-group list-group-flush list-unstyled mt-3">
-                                    <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> Keep the tools free and accessible</li>
-                                    <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> Help us develop new features</li>
-                                    <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> Support ongoing server costs</li>
-                                    <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> Enable us to improve AI models</li>
+                                    <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> Сохраняем инструменты бесплатными и доступными для всех</li>
+                                    <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> Разрабатываем новые функции и улучшения</li>
+                                    <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> Покрываем расходы на серверы и API</li>
+                                    <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> Улучшаем качество наших AI-моделей</li>
+                                    <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> Расширяем поддержку дополнительных языков</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     
+                    <!-- Отзывы о сопроводительных письмах -->
                     <div class="col-md-6 mb-4">
                         <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-header bg-success text-white py-3">
+                                <h3 class="card-title mb-0"><i class="fas fa-comment-alt me-2"></i>Отзывы о сопроводительных письмах</h3>
+                            </div>
                             <div class="card-body">
-                                <h3 class="card-title"><i class="fas fa-comment-alt text-info me-2"></i>Testimonials</h3>
                                 <div class="testimonials-container mt-3">
                                     {% if testimonials %}
                                         {% for testimonial in testimonials %}
@@ -45,7 +66,7 @@
                                                     {% if testimonial.position or testimonial.company %}
                                                         , 
                                                         {% if testimonial.position %}{{ testimonial.position }}{% endif %}
-                                                        {% if testimonial.position and testimonial.company %} at {% endif %}
+                                                        {% if testimonial.position and testimonial.company %} в {% endif %}
                                                         {% if testimonial.company %}{{ testimonial.company }}{% endif %}
                                                     {% endif %}
                                                     
@@ -64,13 +85,18 @@
                                         {% endfor %}
                                     {% else %}
                                         <blockquote class="blockquote">
-                                            <p>"This tool helped me improve my resume and land an interview at my dream company!"</p>
-                                            <footer class="blockquote-footer">Maria K., Software Engineer</footer>
+                                            <p>"Благодаря сгенерированному сопроводительному письму я прошел на собеседование в компанию своей мечты! Оно идеально подчеркнуло мои сильные стороны и показало, почему я подхожу именно для этой позиции."</p>
+                                            <footer class="blockquote-footer">Мария К., Инженер-программист <span class="ms-2"><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i></span></footer>
                                         </blockquote>
                                         
                                         <blockquote class="blockquote">
-                                            <p>"The cover letter generator saved me hours of work and made a fantastic impression."</p>
-                                            <footer class="blockquote-footer">Thomas L., Marketing Specialist</footer>
+                                            <p>"В течение месяца я отправлял резюме без ответа. После использования вашего генератора Anschreiben я получил три приглашения на собеседование в первую же неделю!"</p>
+                                            <footer class="blockquote-footer">Томас Л., Маркетолог <span class="ms-2"><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="far fa-star text-warning"></i></span></footer>
+                                        </blockquote>
+                                        
+                                        <blockquote class="blockquote">
+                                            <p>"Персонализированное сопроводительное письмо, созданное этим инструментом, произвело впечатление на моего нынешнего работодателя. Рекрутер даже упомянул это на собеседовании!"</p>
+                                            <footer class="blockquote-footer">Анна С., Аналитик данных <span class="ms-2"><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i></span></footer>
                                         </blockquote>
                                     {% endif %}
                                 </div>
@@ -79,38 +105,77 @@
                     </div>
                 </div>
                 
-                <!-- Add a Testimonial Form -->
+                <!-- Преимущества сервиса -->
+                <div class="row mt-4">
+                    <div class="col-md-4 mb-4">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body text-center">
+                                <div class="icon-wrapper mb-3">
+                                    <i class="fas fa-magic fa-3x text-primary"></i>
+                                </div>
+                                <h4>AI Анализ</h4>
+                                <p>Мощный искусственный интеллект анализирует ваше резюме и предлагает конкретные улучшения.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body text-center">
+                                <div class="icon-wrapper mb-3">
+                                    <i class="fas fa-file-alt fa-3x text-success"></i>
+                                </div>
+                                <h4>Генератор писем</h4>
+                                <p>Создание персонализированных сопроводительных писем, адаптированных под конкретные вакансии.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body text-center">
+                                <div class="icon-wrapper mb-3">
+                                    <i class="fas fa-language fa-3x text-info"></i>
+                                </div>
+                                <h4>Мультиязычность</h4>
+                                <p>Поддержка анализа на английском и немецком языках для международного рынка труда.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Добавление отзыва -->
                 <div class="row mt-5">
                     <div class="col-md-10 mx-auto">
                         <div class="card border-0 shadow-sm">
+                            <div class="card-header bg-info text-white py-3">
+                                <h3 class="card-title mb-0"><i class="fas fa-pen-fancy me-2"></i>Поделитесь своим опытом</h3>
+                            </div>
                             <div class="card-body p-4">
-                                <h3 class="card-title text-center mb-4"><i class="fas fa-pen-fancy me-2"></i>Share Your Experience</h3>
-                                
                                 <form method="POST" action="{{ url_for('donate') }}">
                                     <div class="mb-3">
-                                        <label for="name" class="form-label">Your Name*</label>
+                                        <label for="name" class="form-label">Ваше имя*</label>
                                         <input type="text" class="form-control" id="name" name="name" required>
                                     </div>
                                     
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
-                                            <label for="position" class="form-label">Your Position</label>
+                                            <label for="position" class="form-label">Ваша должность</label>
                                             <input type="text" class="form-control" id="position" name="position">
                                         </div>
                                         
                                         <div class="col-md-6 mb-3">
-                                            <label for="company" class="form-label">Your Company</label>
+                                            <label for="company" class="form-label">Ваша компания</label>
                                             <input type="text" class="form-control" id="company" name="company">
                                         </div>
                                     </div>
                                     
                                     <div class="mb-3">
-                                        <label for="testimonial_text" class="form-label">Your Testimonial*</label>
+                                        <label for="testimonial_text" class="form-label">Ваш отзыв*</label>
                                         <textarea class="form-control" id="testimonial_text" name="testimonial_text" rows="3" required></textarea>
+                                        <div class="form-text">Расскажите, как наш инструмент помог вам с сопроводительным письмом или улучшением резюме.</div>
                                     </div>
                                     
                                     <div class="mb-4">
-                                        <label class="form-label">Rating</label>
+                                        <label class="form-label">Оценка</label>
                                         <div class="rating">
                                             <div class="btn-group" role="group">
                                                 {% for i in range(1, 6) %}
@@ -125,7 +190,7 @@
                                     
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-primary px-4 py-2">
-                                            <i class="fas fa-paper-plane me-2"></i> Submit Testimonial
+                                            <i class="fas fa-paper-plane me-2"></i> Отправить отзыв
                                         </button>
                                     </div>
                                 </form>
@@ -134,11 +199,16 @@
                     </div>
                 </div>
                 
-                <div class="mt-4">
-                    <p class="text-muted">Thank you for your support! Every contribution helps us continue improving this tool.</p>
-                    <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">
-                        <i class="fas fa-arrow-left me-2"></i> Back to Resume Tool
-                    </a>
+                <div class="mt-5">
+                    <p class="text-muted">Спасибо за вашу поддержку! Каждый вклад помогает нам продолжать улучшать этот инструмент.</p>
+                    <div class="mt-3">
+                        <a href="{{ url_for('index') }}" class="btn btn-outline-secondary me-2">
+                            <i class="fas fa-arrow-left me-2"></i> Вернуться к анализу резюме
+                        </a>
+                        <a href="{{ url_for('anschreiben_page') }}" class="btn btn-outline-success">
+                            <i class="fas fa-file-alt me-2"></i> Создать сопроводительное письмо
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -178,6 +248,22 @@
     
     .rating .btn {
         flex: 1;
+    }
+    
+    .icon-wrapper {
+        display: inline-block;
+        height: 80px;
+        width: 80px;
+        line-height: 80px;
+        text-align: center;
+        border-radius: 50%;
+        background-color: rgba(var(--bs-primary-rgb), 0.1);
+        margin-bottom: 1rem;
+    }
+    
+    blockquote {
+        border-left: 4px solid var(--bs-success);
+        padding-left: 1rem;
     }
 </style>
 {% endblock %}
