@@ -28,7 +28,19 @@ app.secret_key = os.environ.get("SESSION_SECRET", "default-secret-key")
 app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
 
 # Configure database
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
+# Use a SQLite database as fallback if DATABASE_URL is not set
+database_url = os.environ.get("DATABASE_URL")
+if not database_url:
+    # Log warning about missing database URL
+    logging.warning("DATABASE_URL not set. Using SQLite database as fallback.")
+    # Use SQLite as fallback (will be in-memory if path is not writable)
+    try:
+        db_path = os.path.join(os.getcwd(), 'resume_analyzer.db')
+        database_url = f'sqlite:///{db_path}'
+    except:
+        database_url = 'sqlite:///:memory:'
+        
+app.config["SQLALCHEMY_DATABASE_URI"] = database_url
 app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {
     "pool_recycle": 300,
     "pool_pre_ping": True,

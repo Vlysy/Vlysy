@@ -2,8 +2,8 @@ services:
   - type: web
     name: resume-analyzer
     env: python
-    buildCommand: "poetry install"
-    startCommand: "gunicorn --bind 0.0.0.0:\$PORT --workers=2 main:app"
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
+    startCommand: gunicorn main:app
     envVars:
       - key: XAI_API_KEY
         sync: false
