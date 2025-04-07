@@ -10,15 +10,6 @@ from datetime import datetime
 GROQ_API_KEY = os.environ.get("XAI_API_KEY", "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")
 GROQ_MODEL = "llama3-70b-8192"  # Using Llama-3 70B model
 
-# DeepInfra API configuration (fallback)
-DEEPINFRA_API_URL = "https://api.deepinfra.com/v1/openai/chat/completions" 
-DEEPINFRA_MODEL = "meta-llama/Meta-Llama-3-70B-Instruct"
-DEEPINFRA_API_KEY = os.environ.get("DEEPINFRA_API_KEY", "")
-deepinfra_headers = {
-    "Content-Type": "application/json",
-    "Authorization": f"Bearer {DEEPINFRA_API_KEY}"
-}
-
 # Initialize Groq client
 groq_client = None
 try:
@@ -658,7 +649,11 @@ def score_resume_with_api(resume_text, language='en'):
         dict: Score details including overall score and category scores
     """
     try:
-        # Prepare a prompt for DeepInfra based on German standards
+        if not groq_client:
+            logging.error("Groq client not initialized")
+            raise Exception("Groq client not available")
+            
+        # Prepare a prompt based on German standards
         system_prompt = """Du bist ein deutscher HR-Experte, der Lebensläufe basierend auf 
         deutschen Bewerbungsstandards bewertet. Bewerte den Lebenslauf in vier Kategorien: 
         Inhalt, Format, Sprache und Prägnanz. Gib Punkte zwischen 0-100."""
@@ -686,25 +681,20 @@ Antwort NUR in diesem JSON-Format (ohne weitere Erklärungen):
 }}
 """
         
-        # Call DeepInfra API
-        response = requests.post(
-            DEEPINFRA_API_URL,
-            headers=deepinfra_headers,
-            json={
-                "model": DEEPINFRA_MODEL,
-                "messages": [
-                    {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": user_prompt}
-                ],
-                "temperature": 0.3,
-                "max_tokens": 500
-            },
-            timeout=30
+        # Call Groq API
+        response = groq_client.chat.completions.create(
+            model=GROQ_MODEL,
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt}
+            ],
+            temperature=0.3,
+            max_tokens=500
         )
         
-        if response.status_code == 200:
-            api_response = response.json()
-            result_text = api_response["choices"][0]["message"]["content"]
+        # Extract the generated content
+        if response and response.choices and len(response.choices) > 0:
+            result_text = response.choices[0].message.content
             
             # Extract JSON from response (in case there's additional text)
             json_match = re.search(r'({[\s\S]*})', result_text)
@@ -714,9 +704,9 @@ Antwort NUR in diesem JSON-Format (ohne weitere Erklärungen):
             else:
                 raise ValueError("Could not extract JSON from API response")
         else:
-            # Handle API errors
-            logging.error(f"DeepInfra API error ({response.status_code}): {response.text}")
-            raise Exception(f"API error: {response.status_code}")
+            # Handle empty response
+            logging.error("Empty response from Groq API")
+            raise Exception("Empty API response")
             
     except Exception as e:
         logging.error(f"Error in API-based scoring: {str(e)}")
