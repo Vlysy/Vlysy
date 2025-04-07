@@ -232,31 +232,55 @@ function animateProgressBars() {
 
 // Setup language toggle
 function setupLanguageToggle() {
-    const languageButtons = document.querySelectorAll('.language-selector .btn');
+    // First handle the btn-check radios for language selection
+    const languageRadios = document.querySelectorAll('input[name="language"]');
     
-    if (!languageButtons.length) return;
-    
-    languageButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            languageButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-            
-            // Update hidden input value
-            const languageInput = document.querySelector('input[name="language"]');
-            if (languageInput) {
-                languageInput.value = this.getAttribute('data-value') || this.getAttribute('value');
-            }
+    if (languageRadios.length) {
+        languageRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                // When a radio button is selected, update its label
+                const langId = this.id;
+                const langLabels = document.querySelectorAll('label[for^="lang-"]');
+                
+                // Remove active class from all labels
+                langLabels.forEach(label => {
+                    label.classList.remove('active');
+                });
+                
+                // Add active class to selected label
+                const selectedLabel = document.querySelector(`label[for="${langId}"]`);
+                if (selectedLabel) {
+                    selectedLabel.classList.add('active');
+                }
+            });
         });
-    });
-    
-    // Make sure the correct language radio button is visually selected
-    const selectedLang = document.querySelector('input[name="language"]:checked');
-    if (selectedLang) {
-        const langId = selectedLang.id;
-        const langLabel = document.querySelector(`label[for="${langId}"]`);
-        if (langLabel) {
-            langLabel.classList.add('active');
+        
+        // Make sure the correct language radio button is visually selected on page load
+        const selectedLang = document.querySelector('input[name="language"]:checked');
+        if (selectedLang) {
+            const langId = selectedLang.id;
+            const langLabel = document.querySelector(`label[for="${langId}"]`);
+            if (langLabel) {
+                langLabel.classList.add('active');
+            }
         }
+    }
+    
+    // Also handle any other language selectors that might be using classes instead of radio buttons
+    const languageButtons = document.querySelectorAll('.language-selector .btn');
+    if (languageButtons.length) {
+        languageButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                languageButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Update hidden input value if it exists
+                const languageInput = document.querySelector('input[name="language"][type="hidden"]');
+                if (languageInput) {
+                    languageInput.value = this.getAttribute('data-value') || this.getAttribute('value');
+                }
+            });
+        });
     }
 }
 
@@ -279,3 +303,41 @@ function setupScoreTooltips() {
         }
     });
 }
+
+// Sync language selectors
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle language toggles in the navigation
+    const navLanguageRadios = document.querySelectorAll('input[name="language-nav"]');
+    const formLanguageRadios = document.querySelectorAll('input[name="language"]');
+    
+    if (navLanguageRadios.length && formLanguageRadios.length) {
+        // When navigation language is changed, update form language
+        navLanguageRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                const value = this.value;
+                formLanguageRadios.forEach(formRadio => {
+                    if (formRadio.value === value) {
+                        formRadio.checked = true;
+                        // Trigger change event to update visual state
+                        const event = new Event('change');
+                        formRadio.dispatchEvent(event);
+                    }
+                });
+            });
+        });
+        
+        // Initialize nav language based on form language selection
+        const checkedFormLang = document.querySelector('input[name="language"]:checked');
+        if (checkedFormLang) {
+            const value = checkedFormLang.value;
+            navLanguageRadios.forEach(navRadio => {
+                if (navRadio.value === value) {
+                    navRadio.checked = true;
+                    // Trigger change event to update visual state
+                    const event = new Event('change');
+                    navRadio.dispatchEvent(event);
+                }
+            });
+        }
+    }
+});
