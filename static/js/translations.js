@@ -12,7 +12,7 @@ const translations = {
         "support": "Support on Ko-fi",
         
         // Index page
-        "title": "AI CV Polish",
+        "title": "AI CV Optimiser",
         "lead_text": "Improve your chances of landing your dream job!",
         "subtitle": "Use our premium CV analysis and cover letter generator to stand out from the competition.",
         "success_note": "Many users report a 70% increase in responses after using our tools!",
