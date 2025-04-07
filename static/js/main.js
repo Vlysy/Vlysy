@@ -244,10 +244,20 @@ function setupLanguageToggle() {
             // Update hidden input value
             const languageInput = document.querySelector('input[name="language"]');
             if (languageInput) {
-                languageInput.value = this.getAttribute('data-value');
+                languageInput.value = this.getAttribute('data-value') || this.getAttribute('value');
             }
         });
     });
+    
+    // Make sure the correct language radio button is visually selected
+    const selectedLang = document.querySelector('input[name="language"]:checked');
+    if (selectedLang) {
+        const langId = selectedLang.id;
+        const langLabel = document.querySelector(`label[for="${langId}"]`);
+        if (langLabel) {
+            langLabel.classList.add('active');
+        }
+    }
 }
 
 // Setup score tooltips

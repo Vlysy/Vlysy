@@ -315,3 +315,11 @@
     visibility: visible;
     opacity: 1;
 }
+
+/* Active language button styling */
+.btn-check:checked + .btn-outline-secondary, 
+.btn-outline-secondary.active {
+    background-color: var(--bs-secondary);
+    color: #fff;
+    border-color: var(--bs-secondary);
+}
