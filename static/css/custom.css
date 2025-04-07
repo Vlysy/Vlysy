@@ -7,6 +7,37 @@ body {
     flex-direction: column;
 }
 
+/* Pulse animation for buttons */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(var(--bs-primary-rgb), 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(var(--bs-primary-rgb), 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(var(--bs-primary-rgb), 0);
+    }
+}
+
+.pulse {
+    animation: pulse 1s;
+}
+
+/* Language button styles */
+.language-links .lang-btn {
+    font-weight: bold;
+    min-width: 40px;
+    transition: all 0.3s ease;
+}
+
+.language-links .lang-btn.active {
+    color: var(--bs-light);
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 10px rgba(var(--bs-primary-rgb), 0.5);
+}
+
 /* Animations */
 .fade-in {
     opacity: 0;
@@ -167,6 +198,12 @@ body {
     height: 100%;
     border-radius: 0.5rem;
     overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .testimonial-card .card-body {
@@ -226,6 +263,18 @@ body {
 
 .btn-primary:hover:after {
     left: 100%;
+}
+
+/* German-specific styling */
+.german-standard-badge {
+    background-color: var(--bs-primary);
+    color: var(--bs-light);
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Responsive adjustments */

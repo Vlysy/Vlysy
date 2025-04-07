@@ -212,7 +212,11 @@ def index():
         if key in session:
             session.pop(key)
     
-    logging.info("Rendering index page")
+    # Get language preference from URL parameter
+    lang = request.args.get('lang', session.get('language', 'en'))
+    session['language'] = lang
+    
+    logging.info(f"Rendering index page with language: {lang}")
     # Get some example testimonials for display
     testimonials = Testimonial.query.filter_by(approved=True).order_by(Testimonial.created_at.desc()).limit(3).all()
     return render_template('index.html', testimonials=testimonials)
@@ -607,7 +611,10 @@ def download_anschreiben():
 
 @app.route('/donate', methods=['GET', 'POST'])
 def donate():
-    """Display the donation page with Ko-fi integration and testimonials."""
+    """Display the donations page with Ko-fi integration and testimonials."""
+    # Get language preference from URL parameter
+    lang = request.args.get('lang', session.get('language', 'en'))
+    session['language'] = lang
     if request.method == 'POST':
         # Handle testimonial submission
         try:
@@ -672,16 +679,26 @@ def handle_exception(e):
 @app.route('/faq')
 def faq():
     """Display the FAQ page with common questions and answers."""
+    # Get language preference from URL parameter
+    lang = request.args.get('lang', session.get('language', 'en'))
+    session['language'] = lang
     return render_template('faq.html')
 
 @app.route('/examples')
 def examples():
     """Display example resumes that users can download as templates."""
+    # Get language preference from URL parameter
+    lang = request.args.get('lang', session.get('language', 'en'))
+    session['language'] = lang
     return render_template('examples.html')
 
 @app.route('/recommendations')
 def recommendations():
     """Display personalized recommendations based on resume analysis."""
+    # Get language preference from URL parameter
+    lang = request.args.get('lang', session.get('language', 'en'))
+    session['language'] = lang
+    
     # Check if CV and score data are in session
     if 'resume_text' not in session or 'resume_score' not in session:
         flash('Please submit a CV for analysis first.', 'warning')
