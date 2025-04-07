@@ -21,13 +21,8 @@ except ImportError:
 except Exception as e:
     logging.error(f"Error initializing Groq client: {str(e)}")
 
-# For backward compatibility with older API code
-DEEPINFRA_API_KEY = GROQ_API_KEY
-DEEPINFRA_MODEL = "meta-llama/Llama-3-8b-instruct"
-DEEPINFRA_API_URL = "https://api.groq.com/openai/v1/chat/completions"
-
-# Headers for API requests
-deepinfra_headers = {
+# Headers for API requests (REST API fallback)
+groq_headers = {
     "Authorization": f"Bearer {GROQ_API_KEY}",
     "Content-Type": "application/json"
 }
@@ -54,17 +49,19 @@ def analyze_resume(resume_text, language='en'):
         list: A list of correction suggestions with their positions and explanations
     """
     try:
-        # First try to use DeepInfra API for comprehensive analysis
-        if DEEPINFRA_API_KEY:
+        # First try to use Groq API for comprehensive analysis
+        logging.info(f"Analyzing resume with language: {language}")
+        
+        if groq_client:
             try:
-                logging.info("Attempting to use DeepInfra API for CV analysis")
-                corrections = analyze_with_deepinfra(resume_text, language)
+                logging.info("Attempting to use Groq API for CV analysis")
+                corrections = analyze_with_groq(resume_text, language)
                 if corrections:
-                    logging.info(f"DeepInfra API analysis successful, found {len(corrections)} suggestions")
+                    logging.info(f"Groq API analysis successful, found {len(corrections)} suggestions")
                     return corrections
-                logging.warning("DeepInfra API returned no corrections")
+                logging.warning("Groq API returned no corrections")
             except Exception as api_error:
-                logging.error(f"DeepInfra API analysis error: {str(api_error)}")
+                logging.error(f"Groq API analysis error: {str(api_error)}")
                 
         # Fallback to rules-based analysis
         logging.info("Using enhanced fallback analysis for CV corrections")
@@ -842,7 +839,7 @@ Mit freundlichen Grüßen,
     return anschreiben
 
 
-def analyze_with_deepinfra(resume_text, language='en'):
+def analyze_with_groq(resume_text, language='en'):
     """
     Analyze a CV using Groq's Llama-3-70b model for comprehensive improvement suggestions.
     
@@ -973,7 +970,7 @@ For a CV with low scores (below 50/100), you should provide at least 7-10 substa
             logging.error(f"Error with Groq native client: {str(groq_error)}")
             logging.error("Falling back to API request method")
     
-    # Fall back to API request method if native client fails
+    # Fall back to REST API request method if native client fails
     # Prepare the prompt for API based on required language
     system_prompt = """You are an expert CV reviewer specializing in German job market standards. 
     Your task is to analyze a CV and provide specific, detailed improvement suggestions.
@@ -1019,12 +1016,13 @@ For a CV with low scores (below 50/100), you should provide at least 7-10 substa
 """
     
     try:
-        # Call DeepInfra API
+        # Call Groq REST API
+        groq_api_url = "https://api.groq.com/openai/v1/chat/completions"
         response = requests.post(
-            DEEPINFRA_API_URL,
-            headers=deepinfra_headers,
+            groq_api_url,
+            headers=groq_headers,
             json={
-                "model": DEEPINFRA_MODEL,
+                "model": GROQ_MODEL,
                 "messages": [
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": user_prompt}
@@ -1089,19 +1087,19 @@ For a CV with low scores (below 50/100), you should provide at least 7-10 substa
                 if corrections:
                     return corrections
                 else:
-                    logging.warning("No valid corrections extracted from DeepInfra response")
+                    logging.warning("No valid corrections extracted from Groq API response")
                     return []
                     
             except (json.JSONDecodeError, ValueError) as e:
-                logging.error(f"Failed to parse DeepInfra response as JSON: {str(e)}")
+                logging.error(f"Failed to parse Groq API response as JSON: {str(e)}")
                 logging.debug(f"Raw response: {result_text[:500]}...")
                 return []
         else:
-            logging.error(f"DeepInfra API error ({response.status_code}): {response.text}")
+            logging.error(f"Groq API error ({response.status_code}): {response.text}")
             return []
             
     except Exception as e:
-        logging.error(f"Error in DeepInfra analysis: {str(e)}")
+        logging.error(f"Error in Groq API analysis: {str(e)}")
         logging.error(traceback.format_exc())
         return []
 

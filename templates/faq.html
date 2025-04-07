@@ -207,7 +207,7 @@
                         <div class="accordion-body">
                             <p>We provide example resumes for different professions that you can download and use as templates:</p>
                             <ul>
-                                <li><a href="/examples" class="text-decoration-none">Example Resumes Page</a></li>
+                                <li><a href="{{ url_for('examples') }}" class="text-decoration-none">Example Resumes Page</a></li>
                                 <li>You can also find examples on our main page in the "Resume Templates" section</li>
                             </ul>
                             <p>These examples follow best practices and are designed to score well in our analysis tool.</p>
@@ -224,4 +224,21 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Анимация FAQ-аккордеона
+    document.addEventListener('DOMContentLoaded', function() {
+        const accordionItems = document.querySelectorAll('.accordion-item');
+        
+        accordionItems.forEach((item, index) => {
+            // Добавляем небольшую задержку для каждого элемента для эффекта каскада
+            setTimeout(() => {
+                item.style.opacity = '1';
+                item.style.transform = 'translateY(0)';
+            }, 100 * index);
+        });
+    });
+</script>
 {% endblock %}
