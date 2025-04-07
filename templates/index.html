@@ -7,18 +7,18 @@
     <div class="col-md-10">
         <div class="card border-0 shadow-sm mb-4 animate-card">
             <div class="card-body p-4">
-                <h1 class="mb-4 text-center">AI CV Polish</h1>
-                <p class="lead text-center">Improve your chances of landing your dream job!</p>
-                <p class="text-center mb-4">Use our premium CV analysis and cover letter generator to stand out from the competition.</p>
+                <h1 class="mb-4 text-center translate" data-key="title">AI CV Polish</h1>
+                <p class="lead text-center translate" data-key="lead_text">Improve your chances of landing your dream job!</p>
+                <p class="text-center mb-4 translate" data-key="subtitle">Use our premium CV analysis and cover letter generator to stand out from the competition.</p>
                 <div class="alert alert-info mb-4">
-                    <p class="mb-0 text-center">Many users report a 70% increase in responses after using our tools!</p>
+                    <p class="mb-0 text-center translate" data-key="success_note">Many users report a 70% increase in responses after using our tools!</p>
                 </div>
 
                 <div class="text-center mb-4">
                     <div class="badge bg-primary p-2 mb-3">
-                        <i class="fas fa-award me-1"></i> Optimized for German job market standards
+                        <i class="fas fa-award me-1"></i> <span class="translate" data-key="german_market">Optimized for German job market standards</span>
                     </div>
-                    <p class="small">Our AI is specially trained on German CV and cover letter standards</p>
+                    <p class="small translate" data-key="german_market_note">Our AI is specially trained on German CV and cover letter standards</p>
                 </div>
                 
                 <form action="{{ url_for('analyze') }}" method="POST" enctype="multipart/form-data" class="mt-4" id="resume-form">
@@ -26,23 +26,23 @@
                         <div class="d-flex justify-content-center mb-3">
                             <div class="btn-group" role="group">
                                 <input type="radio" class="btn-check" name="input-type" id="upload-option" autocomplete="off" checked>
-                                <label class="btn btn-outline-primary" for="upload-option">Upload File</label>
+                                <label class="btn btn-outline-primary translate" for="upload-option" data-key="upload_file">Upload File</label>
                                 
                                 <input type="radio" class="btn-check" name="input-type" id="paste-option" autocomplete="off">
-                                <label class="btn btn-outline-primary" for="paste-option">Paste Text</label>
+                                <label class="btn btn-outline-primary translate" for="paste-option" data-key="paste_text">Paste Text</label>
                             </div>
                         </div>
                         
                         <div id="upload-section" class="mb-3">
                             <div class="input-group">
                                 <input type="file" class="form-control" id="resume-file" name="resume_file" accept=".pdf,.docx,.txt">
-                                <label class="input-group-text" for="resume-file">Upload</label>
+                                <label class="input-group-text translate" for="resume-file" data-key="upload_cv">Upload</label>
                             </div>
                             <div class="form-text">Supported formats: PDF, DOCX, TXT</div>
                         </div>
                         
                         <div id="paste-section" class="mb-3" style="display: none;">
-                            <textarea class="form-control" id="resume-text" name="resume_text" rows="10" placeholder="Paste your CV text here..."></textarea>
+                            <textarea class="form-control" id="resume-text" name="resume_text" rows="10" data-translate-placeholder="paste_cv" placeholder="Paste your CV text here..."></textarea>
                         </div>
                     </div>
                     
@@ -52,7 +52,7 @@
                     </div>
                     
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-primary btn-lg pulse-button">Analyze CV</button>
+                        <button type="submit" class="btn btn-primary btn-lg pulse-button translate" data-key="analyze_button">Analyze CV</button>
                     </div>
                 </form>
             </div>
@@ -60,28 +60,28 @@
         
         <div class="card border-0 shadow-sm mb-4 animate-card">
             <div class="card-body p-4">
-                <h3 class="text-center">How It Works</h3>
+                <h3 class="text-center translate" data-key="how_it_works">How It Works</h3>
                 <div class="row mt-4">
                     <div class="col-md-4 mb-3">
                         <div class="text-center mb-2">
                             <i class="fas fa-upload fa-3x text-primary"></i>
                         </div>
-                        <h5 class="text-center">Upload Your CV</h5>
-                        <p class="text-center">Upload your CV in PDF, DOCX, or TXT format or paste the text directly.</p>
+                        <h5 class="text-center translate" data-key="upload_step">Upload Your CV</h5>
+                        <p class="text-center translate" data-key="upload_step_desc">Upload your CV in PDF, DOCX, or TXT format or paste the text directly.</p>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="text-center mb-2">
                             <i class="fas fa-robot fa-3x text-primary"></i>
                         </div>
-                        <h5 class="text-center">AI Analysis</h5>
-                        <p class="text-center">Our AI analyzes your CV for grammar, style, and content improvements based on German standards.</p>
+                        <h5 class="text-center translate" data-key="analysis_step">AI Analysis</h5>
+                        <p class="text-center translate" data-key="analysis_step_desc">Our AI analyzes your CV for grammar, style, and content improvements based on German standards.</p>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="text-center mb-2">
                             <i class="fas fa-check-circle fa-3x text-primary"></i>
                         </div>
-                        <h5 class="text-center">Get Suggestions</h5>
-                        <p class="text-center">Review personalized suggestions and download your improved CV.</p>
+                        <h5 class="text-center translate" data-key="suggestions_step">Get Suggestions</h5>
+                        <p class="text-center translate" data-key="suggestions_step_desc">Review personalized suggestions and download your improved CV.</p>
                     </div>
                 </div>
             </div>
@@ -89,16 +89,16 @@
         
         <div class="card border-0 shadow-sm mb-4 animate-card">
             <div class="card-body p-4">
-                <h3 class="text-center mb-4">Cover Letter Testimonials</h3>
+                <h3 class="text-center mb-4 translate" data-key="testimonials_title">Cover Letter Testimonials</h3>
                 <div class="row">
                     <div class="col-md-4 mb-4">
                         <div class="card h-100 testimonial-card">
                             <div class="card-body">
                                 <i class="fas fa-quote-left quote-icon"></i>
-                                <p class="card-text">"After months of rejections, the Anschreiben generated by this tool helped me get an interview with BMW! The format perfectly matched German expectations."</p>
+                                <p class="card-text translate" data-key="testimonial1">"After months of rejections, the Anschreiben generated by this tool helped me get an interview with BMW! The format perfectly matched German expectations."</p>
                             </div>
                             <div class="card-footer bg-transparent border-0">
-                                <p class="mb-0 text-end"><strong>Martin S.</strong>, München</p>
+                                <p class="mb-0 text-end translate" data-key="testimonial1_author"><strong>Martin S.</strong>, München</p>
                             </div>
                         </div>
                     </div>
@@ -106,10 +106,10 @@
                         <div class="card h-100 testimonial-card">
                             <div class="card-body">
                                 <i class="fas fa-quote-left quote-icon"></i>
-                                <p class="card-text">"The automated Anschreiben addressed all the job requirements and followed formal German business etiquette. It impressed the hiring manager!"</p>
+                                <p class="card-text translate" data-key="testimonial2">"The automated Anschreiben addressed all the job requirements and followed formal German business etiquette. It impressed the hiring manager!"</p>
                             </div>
                             <div class="card-footer bg-transparent border-0">
-                                <p class="mb-0 text-end"><strong>Julia K.</strong>, Frankfurt</p>
+                                <p class="mb-0 text-end translate" data-key="testimonial2_author"><strong>Julia K.</strong>, Frankfurt</p>
                             </div>
                         </div>
                     </div>
@@ -117,10 +117,10 @@
                         <div class="card h-100 testimonial-card">
                             <div class="card-body">
                                 <i class="fas fa-quote-left quote-icon"></i>
-                                <p class="card-text">"As a foreigner applying for German jobs, this tool was invaluable. The cover letter matched all the German standards and helped me secure interviews."</p>
+                                <p class="card-text translate" data-key="testimonial3">"As a foreigner applying for German jobs, this tool was invaluable. The cover letter matched all the German standards and helped me secure interviews."</p>
                             </div>
                             <div class="card-footer bg-transparent border-0">
-                                <p class="mb-0 text-end"><strong>Thomas B.</strong>, Berlin</p>
+                                <p class="mb-0 text-end translate" data-key="testimonial3_author"><strong>Thomas B.</strong>, Berlin</p>
                             </div>
                         </div>
                     </div>
@@ -130,88 +130,32 @@
         
         <div class="card border-0 shadow-sm animate-card">
             <div class="card-body p-4">
-                <h3 class="text-center mb-4">Our Features</h3>
+                <h3 class="text-center mb-4 translate" data-key="features_title">Our Features</h3>
                 <div class="row mt-4">
                     <div class="col-md-4 mb-3">
                         <div class="text-center mb-2">
                             <i class="fas fa-brain fa-3x text-primary"></i>
                         </div>
-                        <h5 class="text-center">AI Analysis</h5>
-                        <p class="text-center">Powerful AI analyzes your CV according to German standards and offers specific improvements.</p>
+                        <h5 class="text-center translate" data-key="ai_analysis_title">AI Analysis</h5>
+                        <p class="text-center translate" data-key="ai_analysis_desc">Powerful AI analyzes your CV according to German standards and offers specific improvements.</p>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="text-center mb-2">
                             <i class="fas fa-file-signature fa-3x text-primary"></i>
                         </div>
-                        <h5 class="text-center">Anschreiben Generator</h5>
-                        <p class="text-center">Creation of personalized German-style cover letters tailored to specific job openings.</p>
+                        <h5 class="text-center translate" data-key="anschreiben_title">Anschreiben Generator</h5>
+                        <p class="text-center translate" data-key="anschreiben_desc">Creation of personalized German-style cover letters tailored to specific job openings.</p>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="text-center mb-2">
                             <i class="fas fa-language fa-3x text-primary"></i>
                         </div>
-                        <h5 class="text-center">Multilingual</h5>
-                        <p class="text-center">Support for analysis in English and German for the international job market.</p>
+                        <h5 class="text-center translate" data-key="multilingual_title">Multilingual</h5>
+                        <p class="text-center translate" data-key="multilingual_desc">Support for analysis in English and German for the international job market.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-{% endblock %}
-
-{% block scripts %}
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const uploadOption = document.getElementById('upload-option');
-        const pasteOption = document.getElementById('paste-option');
-        const uploadSection = document.getElementById('upload-section');
-        const pasteSection = document.getElementById('paste-section');
-        const languageInput = document.getElementById('language-input');
-        
-        // Add animations to cards
-        const cards = document.querySelectorAll('.animate-card');
-        cards.forEach((card, index) => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            
-            setTimeout(() => {
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
-            }, 100 + (index * 150));
-        });
-        
-        uploadOption.addEventListener('change', function() {
-            if (this.checked) {
-                uploadSection.style.display = 'block';
-                pasteSection.style.display = 'none';
-            }
-        });
-        
-        pasteOption.addEventListener('change', function() {
-            if (this.checked) {
-                uploadSection.style.display = 'none';
-                pasteSection.style.display = 'block';
-            }
-        });
-        
-        // Add tooltips to elements
-        const tooltipElements = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-        tooltipElements.forEach(el => {
-            new bootstrap.Tooltip(el);
-        });
-        
-        // Add pulse animation to primary buttons
-        const pulseButtons = document.querySelectorAll('.pulse-button');
-        pulseButtons.forEach(button => {
-            setInterval(() => {
-                button.classList.add('pulse');
-                setTimeout(() => {
-                    button.classList.remove('pulse');
-                }, 1000);
-            }, 5000);
-        });
-    });
-</script>
 {% endblock %}

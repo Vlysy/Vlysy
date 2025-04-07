@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const currentLanguage = languageInput ? languageInput.value : 'en';
     highlightActiveLanguage(currentLanguage);
     
+    // Apply translations for current language
+    applyTranslations(currentLanguage);
+    
     // Add click event to language buttons
     languageButtons.forEach(button => {
         button.addEventListener('click', function(e) {
@@ -20,6 +23,9 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Highlight active language
             highlightActiveLanguage(lang);
+            
+            // Apply translations for selected language
+            applyTranslations(lang);
             
             // Redirect to current page with language parameter
             const url = new URL(window.location.href);
@@ -35,6 +41,29 @@ document.addEventListener('DOMContentLoaded', function() {
                 btn.classList.add('active');
             } else {
                 btn.classList.remove('active');
+            }
+        });
+    }
+    
+    // Function to apply translations
+    function applyTranslations(lang) {
+        if (!translations || !translations[lang]) {
+            console.error('Translations not available for language:', lang);
+            return;
+        }
+        
+        document.querySelectorAll('.translate').forEach(element => {
+            const key = element.getAttribute('data-key');
+            if (key && translations[lang][key]) {
+                element.textContent = translations[lang][key];
+            }
+        });
+        
+        // Also apply translations to data-placeholder attributes
+        document.querySelectorAll('[data-translate-placeholder]').forEach(element => {
+            const key = element.getAttribute('data-translate-placeholder');
+            if (key && translations[lang][key]) {
+                element.placeholder = translations[lang][key];
             }
         });
     }
