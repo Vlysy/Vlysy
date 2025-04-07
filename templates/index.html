@@ -10,7 +10,7 @@
                 <h1 class="mb-4 text-center">AI Resume Polish</h1>
                 <p class="lead text-center">Upload your resume and get AI-powered suggestions to improve it</p>
                 
-                <form action="{{ url_for('analyze') }}" method="POST" enctype="multipart/form-data" class="mt-4">
+                <form action="{{ url_for('analyze') }}" method="POST" enctype="multipart/form-data" class="mt-4" id="resume-form">
                     <div class="mb-4">
                         <div class="d-flex justify-content-center mb-3">
                             <div class="btn-group" role="group">
@@ -35,18 +35,9 @@
                         </div>
                     </div>
                     
-                    <!-- Hidden language selection that syncs with the nav bar language selector -->
-                    <div class="mb-4 d-none">
-                        <label class="form-label">Language</label>
-                        <div class="d-flex justify-content-center">
-                            <div class="btn-group" role="group">
-                                <input type="radio" class="btn-check" name="language" id="lang-en" value="en" data-value="en" autocomplete="off" checked>
-                                <label class="btn btn-outline-secondary" for="lang-en">English</label>
-                                
-                                <input type="radio" class="btn-check" name="language" id="lang-de" value="de" data-value="de" autocomplete="off">
-                                <label class="btn btn-outline-secondary" for="lang-de">German</label>
-                            </div>
-                        </div>
+                    <!-- Hidden language selection that works with the nav bar language selector -->
+                    <div class="mb-4">
+                        <input type="hidden" name="language" id="language-input" value="en">
                     </div>
                     
                     <div class="d-grid">
@@ -107,6 +98,26 @@
             if (this.checked) {
                 uploadSection.style.display = 'none';
                 pasteSection.style.display = 'block';
+            }
+        });
+        
+        // Setup nav language buttons to update the form language
+        const navLangRadios = document.querySelectorAll('input[name="language-nav"]');
+        const languageInput = document.getElementById('language-input');
+        
+        navLangRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (languageInput) {
+                    languageInput.value = this.value;
+                    console.log('Updated language to: ' + this.value);
+                }
+            });
+        });
+        
+        // Initialize form language from nav language
+        navLangRadios.forEach(radio => {
+            if (radio.checked && languageInput) {
+                languageInput.value = radio.value;
             }
         });
     });

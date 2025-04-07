@@ -223,6 +223,10 @@ def analyze():
     file_name = None
     file_type = None
     
+    # Get language preference from form or hidden input
+    language = request.form.get('language', 'en')
+    logging.debug(f"Language selected for analysis: {language}")
+    
     # Check if the user uploaded a file or pasted text
     if 'resume_file' in request.files and request.files['resume_file'].filename:
         file = request.files['resume_file']
@@ -275,9 +279,6 @@ def analyze():
         return redirect(url_for('index'))
     
     try:
-        # Get language preference from form
-        language = request.form.get('language', 'en')
-        
         # Save resume to database
         resume = Resume(
             text=resume_text,
