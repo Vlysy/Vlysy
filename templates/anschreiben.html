@@ -21,6 +21,9 @@
                         <div class="form-text translate" data-key="job_description_help">Add as much detail as possible for better results.</div>
                     </div>
                     
+                    <!-- Hidden language input -->
+                    <input type="hidden" id="language-input" name="language" value="{{ language }}">
+                    
                     <div class="d-grid gap-2">
                         <button type="submit" class="btn btn-success btn-lg pulse-button translate" data-key="generate_button">
                             <i class="fas fa-magic me-2"></i> Generate Cover Letter
@@ -45,6 +48,7 @@
                 
                 <form action="{{ url_for('download_anschreiben') }}" method="post">
                     <input type="hidden" name="anschreiben_text" id="anschreiben-text-input" value="{{ anschreiben }}">
+                    <input type="hidden" name="language" value="{{ language }}">
                     <div class="d-flex justify-content-between">
                         <button type="button" id="copy-anschreiben" class="btn btn-outline-primary">
                             <i class="fas fa-copy me-1"></i> <span class="translate" data-key="copy_clipboard">Copy to Clipboard</span>
@@ -64,6 +68,16 @@
 {% block scripts %}
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // Set language from server-side
+        const langInput = document.getElementById('language-input');
+        if (langInput && langInput.value) {
+            console.log('Setting language on anschreiben page to:', langInput.value);
+            if (typeof applyTranslations === 'function' && typeof translations !== 'undefined') {
+                console.log('Applying initial translations for language:', langInput.value);
+                applyTranslations(langInput.value);
+            }
+        }
+
         const copyBtn = document.getElementById('copy-anschreiben');
         if (copyBtn) {
             copyBtn.addEventListener('click', function() {

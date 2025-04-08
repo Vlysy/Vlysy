@@ -111,6 +111,9 @@
         {% block content %}{% endblock %}
     </div>
 
+    <!-- Hidden input for language storage -->
+    <input type="hidden" id="language-input" value="{{ session.get('language', 'en') }}">
+    
     <!-- Loading overlay -->
     <div class="loading-overlay" id="loadingOverlay">
         <div class="spinner-border text-light" role="status">

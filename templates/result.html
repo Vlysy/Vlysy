@@ -141,12 +141,34 @@
         </div>
     </div>
 </div>
+
+<!-- Hidden elements with translations for JavaScript alerts -->
+<div class="d-none">
+    <div data-key="select_correction_error">Please select at least one correction to apply.</div>
+    <div data-key="corrections_applied">Corrections applied successfully!</div>
+    <div data-key="error_applying">Error applying corrections:</div>
+    <div data-key="error_occurred">An error occurred while applying corrections.</div>
+</div>
+
+<!-- Hidden input with current language -->
+<input type="hidden" id="language-input" value="{{ language }}">
+
 {% endblock %}
 
 {% block scripts %}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // Set language from server-side
+        const langInput = document.getElementById('language-input');
+        if (langInput && langInput.value) {
+            console.log('Setting language on result page to:', langInput.value);
+            if (typeof applyTranslations === 'function' && typeof translations !== 'undefined') {
+                console.log('Applying initial translations for language:', langInput.value);
+                applyTranslations(langInput.value);
+            }
+        }
+
         // Initialize score chart
         const ctx = document.getElementById('score-chart').getContext('2d');
         new Chart(ctx, {

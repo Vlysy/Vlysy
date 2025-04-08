@@ -384,7 +384,10 @@ def results():
                 "summary": "Error in evaluation" if 'language' in locals() and language == 'en' else "Fehler bei der Bewertung"
             }
     
-    return render_template('result.html', resume_text=resume_text, corrections=corrections, score=score_data)
+    # Get the language from session
+    language = session.get('language', 'en')
+    
+    return render_template('result.html', resume_text=resume_text, corrections=corrections, score=score_data, language=language)
 
 @app.route('/download', methods=['POST'])
 def download():
@@ -518,10 +521,14 @@ def anschreiben_page():
         anschreiben_text = session.get('anschreiben', '')
         job_description = session.get('job_description', '')
         
+        # Get the language from session
+        language = session.get('language', 'en')
+        
         return render_template('anschreiben.html', 
                               resume_text=resume_text,
                               job_description=job_description,
-                              anschreiben=anschreiben_text)
+                              anschreiben=anschreiben_text,
+                              language=language)
     
     elif request.method == 'POST':
         # Get CV and job description
@@ -569,20 +576,28 @@ def anschreiben_page():
                 db.session.commit()
                 logging.info(f"Saved cover letter to database for resume {resume_id}")
             
+            # Get the language from session
+            language = session.get('language', 'en')
+            
             return render_template('anschreiben.html', 
                                   resume_text=resume_text,
                                   job_description=job_description,
-                                  anschreiben=anschreiben_text)
+                                  anschreiben=anschreiben_text,
+                                  language=language)
         except Exception as e:
             error_message = str(e)
             flash(f'Error generating cover letter: {error_message}', 'danger')
             logging.error(f"Anschreiben generation error: {error_message}")
             logging.error(traceback.format_exc())
             
+            # Get the language from session
+            language = session.get('language', 'en')
+            
             return render_template('anschreiben.html', 
                                  resume_text=resume_text,
                                  job_description=job_description,
-                                 anschreiben='')
+                                 anschreiben='',
+                                 language=language)
 
 @app.route('/download_anschreiben', methods=['POST'])
 def download_anschreiben():
