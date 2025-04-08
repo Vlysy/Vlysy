@@ -34,6 +34,12 @@
                                     <span class="translate" data-key="upload_cv">Upload CV</span>
                                 </label>
                             </div>
+                            <div id="file-info" class="file-info mt-2 text-center" style="display:none;">
+                                <div class="alert alert-info">
+                                    <i class="fas fa-file-alt me-2"></i> 
+                                    <span id="file-name">No file selected</span>
+                                </div>
+                            </div>
                             <div class="form-text text-center mt-2">Supported formats: PDF, DOCX, TXT</div>
                         </div>
                         
@@ -174,4 +180,38 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Add file upload visual feedback
+document.addEventListener('DOMContentLoaded', function() {
+    const fileInput = document.getElementById('resume-file');
+    const fileInfo = document.getElementById('file-info');
+    const fileName = document.getElementById('file-name');
+    
+    if (fileInput && fileInfo && fileName) {
+        fileInput.addEventListener('change', function() {
+            if (this.files.length > 0) {
+                fileName.textContent = this.files[0].name;
+                fileInfo.style.display = 'block';
+                // Change upload button text and style to show it's selected
+                const uploadLabel = document.querySelector('.upload-file-label');
+                uploadLabel.innerHTML = '<i class="fas fa-check-circle me-2"></i> <span>File Selected</span>';
+                uploadLabel.style.backgroundColor = 'rgba(var(--bs-success-rgb), 0.1)';
+                uploadLabel.style.borderColor = 'var(--bs-success)';
+                uploadLabel.style.color = 'var(--bs-success)';
+            } else {
+                fileInfo.style.display = 'none';
+                // Reset upload button
+                const uploadLabel = document.querySelector('.upload-file-label');
+                uploadLabel.innerHTML = '<i class="fas fa-cloud-upload-alt me-2"></i> <span class="translate" data-key="upload_cv">Upload CV</span>';
+                uploadLabel.style.backgroundColor = '';
+                uploadLabel.style.borderColor = '';
+                uploadLabel.style.color = '';
+            }
+        });
+    }
+});
+</script>
 {% endblock %}
