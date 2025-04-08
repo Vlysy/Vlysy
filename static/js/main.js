@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize active language button based on current language
     const currentLanguage = languageInput ? languageInput.value : 'en';
+    console.log('Current language set to:', currentLanguage);
     highlightActiveLanguage(currentLanguage);
     
     // Apply translations for current language
@@ -36,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', function(e) {
             e.preventDefault();
             const lang = this.getAttribute('data-lang');
+            console.log('Language selected:', lang);
             
             // Set hidden input value for forms
             if (languageInput) {
@@ -79,7 +81,12 @@ document.addEventListener('DOMContentLoaded', function() {
             if (key && translations[lang][key]) {
                 element.textContent = translations[lang][key];
             } else if (key) {
-                console.warn('Missing translation for key:', key, 'in language:', lang);
+                // If translation not found, try to use English as fallback
+                if (translations['en'] && translations['en'][key]) {
+                    element.textContent = translations['en'][key];
+                } else {
+                    console.warn('Missing translation for key:', key, 'in language:', lang);
+                }
             }
         });
         

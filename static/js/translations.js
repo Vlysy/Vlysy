@@ -73,7 +73,16 @@ const translations = {
         "ai_cover_letter_note": "This is an AI-generated cover letter. Review and personalize it before use.",
         "copy_clipboard": "Copy to Clipboard",
         "copied": "Copied!",
-        "download_cover_letter": "Download Cover Letter"
+        "download_cover_letter": "Download Cover Letter",
+        
+        // Features section
+        "features_title": "Our Features",
+        "ai_analysis_title": "AI Analysis",
+        "ai_analysis_desc": "Powerful AI analyzes your CV according to German standards and offers specific improvements.",
+        "anschreiben_title_feature": "Anschreiben Generator",
+        "anschreiben_desc_feature": "Creation of personalized German-style cover letters tailored to specific job openings.",
+        "multilingual_title": "Multilingual",
+        "multilingual_desc": "Support for analysis in English, German and Ukrainian for the international job market."
     },
     de: {
         // Common
@@ -148,7 +157,16 @@ const translations = {
         "ai_cover_letter_note": "Dies ist ein KI-generiertes Anschreiben. Überprüfen und personalisieren Sie es vor der Verwendung.",
         "copy_clipboard": "In Zwischenablage kopieren",
         "copied": "Kopiert!",
-        "download_cover_letter": "Anschreiben herunterladen"
+        "download_cover_letter": "Anschreiben herunterladen",
+        
+        // Features section
+        "features_title": "Unsere Funktionen",
+        "ai_analysis_title": "KI-Analyse",
+        "ai_analysis_desc": "Leistungsstarke KI analysiert Ihren Lebenslauf nach deutschen Standards und bietet spezifische Verbesserungen.",
+        "anschreiben_title_feature": "Anschreiben-Generator",
+        "anschreiben_desc_feature": "Erstellung personalisierter deutscher Anschreiben, maßgeschneidert für spezifische Stellenausschreibungen.",
+        "multilingual_title": "Mehrsprachig",
+        "multilingual_desc": "Unterstützung für Analysen auf Englisch, Deutsch und Ukrainisch für den internationalen Arbeitsmarkt."
     },
     uk: {
         // Common
@@ -214,7 +232,7 @@ const translations = {
         "anschreiben_title": "Генератор супровідних листів",
         "anschreiben_desc": "Створіть персоналізований супровідний лист на основі вашого резюме та опису вакансії.",
         "anschreiben_pro_tip": "Порада:",
-        "anschreiben_tip_content": "Включіть повний опис вакансії для найкращих результатів. Наш ШІ аналізує вимоги та підлаштовує ваш супровідний лист спеціально до потреб компанії.",
+        "anschreiben_tip_content": "Включіть повний опис вакансії для найкращих результатів. Наш ШІ аналізує вимоги та підлаштовує ваш супровідний лист спеціально під потреби компанії.",
         "job_description_label": "Опис вакансії",
         "paste_job_description": "Вставте опис вакансії тут...",
         "job_description_help": "Додайте якомога більше деталей для кращих результатів.",
@@ -223,6 +241,15 @@ const translations = {
         "ai_cover_letter_note": "Це супровідний лист, створений ШІ. Перевірте та персоналізуйте його перед використанням.",
         "copy_clipboard": "Копіювати в буфер обміну",
         "copied": "Скопійовано!",
-        "download_cover_letter": "Завантажити супровідний лист"
+        "download_cover_letter": "Завантажити супровідний лист",
+        
+        // Features section
+        "features_title": "Наші функції",
+        "ai_analysis_title": "ШІ-аналіз",
+        "ai_analysis_desc": "Потужний ШІ аналізує ваше резюме відповідно до німецьких стандартів і пропонує конкретні покращення.",
+        "anschreiben_title_feature": "Генератор супровідних листів",
+        "anschreiben_desc_feature": "Створення персоналізованих супровідних листів у німецькому стилі, адаптованих до конкретних вакансій.",
+        "multilingual_title": "Багатомовний",
+        "multilingual_desc": "Підтримка аналізу англійською, німецькою та українською мовами для міжнародного ринку праці."
     }
 };

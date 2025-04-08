@@ -10,6 +10,42 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+    <style>
+    /* Украинский флаг для кнопки */
+    .ua-btn {
+        background: linear-gradient(to bottom, #0057b7 50%, #ffd700 50%);
+        color: white !important;
+        font-weight: bold;
+        border: none;
+    }
+    .ua-btn:hover {
+        opacity: 0.9;
+    }
+    
+    /* Стиль для donate кнопки */
+    .donate-button {
+        background-color: #f39c12;
+        color: #000 !important;
+        font-weight: bold;
+        padding: 6px 15px;
+        border-radius: 20px;
+        animation: pulse-gold 2s infinite;
+        display: inline-block;
+        margin-top: -3px;
+    }
+    
+    @keyframes pulse-gold {
+        0% {
+            box-shadow: 0 0 0 0 rgba(243, 156, 18, 0.7);
+        }
+        70% {
+            box-shadow: 0 0 0 10px rgba(243, 156, 18, 0);
+        }
+        100% {
+            box-shadow: 0 0 0 0 rgba(243, 156, 18, 0);
+        }
+    }
+    </style>
     {% block head %}{% endblock %}
 </head>
 <body>
@@ -43,13 +79,16 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('donate') }}">
-                            <i class="fas fa-mug-hot me-1"></i> Donate(please)
+                            <span class="donate-button">
+                                <i class="fas fa-mug-hot me-1"></i> DONATE NOW
+                            </span>
                         </a>
                     </li>
                     <li class="nav-item language-nav-item ms-2">
                         <div class="language-links">
                             <a href="#" class="btn btn-sm btn-outline-secondary lang-btn {% if session.get('language', 'en') == 'en' %}active{% endif %}" data-lang="en">EN</a>
                             <a href="#" class="btn btn-sm btn-outline-secondary lang-btn {% if session.get('language', 'en') == 'de' %}active{% endif %}" data-lang="de">DE</a>
+                            <a href="#" class="btn btn-sm btn-outline-secondary ua-btn lang-btn {% if session.get('language', 'en') == 'uk' %}active{% endif %}" data-lang="uk">UA</a>
                         </div>
                     </li>
                 </ul>
