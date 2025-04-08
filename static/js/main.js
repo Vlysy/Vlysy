@@ -68,6 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Function to apply translations
     function applyTranslations(lang) {
+        console.log('Applying translations for language:', lang);
         if (!translations || !translations[lang]) {
             console.error('Translations not available for language:', lang);
             return;
@@ -77,6 +78,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const key = element.getAttribute('data-key');
             if (key && translations[lang][key]) {
                 element.textContent = translations[lang][key];
+            } else if (key) {
+                console.warn('Missing translation for key:', key, 'in language:', lang);
             }
         });
         
@@ -87,6 +90,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 element.placeholder = translations[lang][key];
             }
         });
+        
+        // Update the document language attribute
+        document.documentElement.setAttribute('lang', lang);
     }
     
     // File upload handling
