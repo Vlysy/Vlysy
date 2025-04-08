@@ -7,18 +7,11 @@
     <div class="col-md-10">
         <div class="card border-0 shadow-sm mb-4 animate-card">
             <div class="card-body p-4">
-                <h1 class="mb-4 text-center translate" data-key="title">AI CV Optimiser</h1>
+                <h1 class="mb-3 text-center translate" data-key="title">AI CV Optimiser</h1>
                 <p class="lead text-center translate" data-key="lead_text">Improve your chances of landing your dream job!</p>
-                <p class="text-center mb-4 translate" data-key="subtitle">Use our premium CV analysis and cover letter generator to stand out from the competition.</p>
-                <div class="alert alert-info mb-4">
-                    <p class="mb-0 text-center translate" data-key="success_note">Many users report a 70% increase in responses after using our tools!</p>
-                </div>
-
-                <div class="text-center mb-4">
-                    <div class="badge bg-primary p-2 mb-3">
-                        <i class="fas fa-award me-1"></i> <span class="translate" data-key="german_market">Optimized for German job market standards</span>
-                    </div>
-                    <p class="small translate" data-key="german_market_note">Our AI is specially trained on German CV and cover letter standards</p>
+                <p class="text-center mb-3 translate" data-key="subtitle">Get professional CV analysis and create standout cover letters.</p>
+                <div class="alert alert-success mb-3">
+                    <p class="mb-0 text-center translate" data-key="success_note">70% more interview invitations with our AI tools!</p>
                 </div>
                 
                 <form action="{{ url_for('analyze') }}" method="POST" enctype="multipart/form-data" class="mt-4" id="resume-form">
@@ -34,11 +27,14 @@
                         </div>
                         
                         <div id="upload-section" class="mb-3">
-                            <div class="input-group">
-                                <input type="file" class="form-control" id="resume-file" name="resume_file" accept=".pdf,.docx,.txt">
-                                <label class="input-group-text translate" for="resume-file" data-key="upload_cv">Upload</label>
+                            <div class="file-upload-container">
+                                <input type="file" class="upload-file-input" id="resume-file" name="resume_file" accept=".pdf,.docx,.txt">
+                                <label class="upload-file-label" for="resume-file">
+                                    <i class="fas fa-cloud-upload-alt me-2"></i> 
+                                    <span class="translate" data-key="upload_cv">Upload CV</span>
+                                </label>
                             </div>
-                            <div class="form-text">Supported formats: PDF, DOCX, TXT</div>
+                            <div class="form-text text-center mt-2">Supported formats: PDF, DOCX, TXT</div>
                         </div>
                         
                         <div id="paste-section" class="mb-3" style="display: none;">
@@ -92,6 +88,14 @@
                         <h5 class="text-center translate" data-key="suggestions_step">Get Suggestions</h5>
                         <p class="text-center translate" data-key="suggestions_step_desc">Review personalized suggestions and download your improved CV.</p>
                     </div>
+                </div>
+                
+                <div class="mt-4 bg-light p-3 rounded text-center german-market-box">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg" alt="German Flag" width="30" class="me-2">
+                        <h5 class="mb-0 translate" data-key="german_market">Optimized for German job market</h5>
+                    </div>
+                    <p class="small mt-2 mb-0 translate" data-key="german_market_note">Our AI is trained on German CV standards</p>
                 </div>
             </div>
         </div>
@@ -163,7 +167,7 @@
                             <i class="fas fa-language fa-3x text-primary"></i>
                         </div>
                         <h5 class="text-center translate" data-key="multilingual_title">Multilingual</h5>
-                        <p class="text-center translate" data-key="multilingual_desc">Support for analysis in English and German for the international job market.</p>
+                        <p class="text-center translate" data-key="multilingual_desc">Support for analysis in English, German and Ukrainian for the international job market.</p>
                     </div>
                 </div>
             </div>
