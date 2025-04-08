@@ -7,23 +7,35 @@
     <div class="col-md-4 mb-4">
         <div class="card border-0 shadow-sm h-100">
             <div class="card-body">
-                <h3 class="card-title">Resume Score</h3>
+                <h3 class="card-title translate" data-key="cv_score">Resume Score</h3>
                 <div class="text-center mb-4">
                     <div class="position-relative d-inline-block">
                         <canvas id="score-chart" width="200" height="200"></canvas>
                         <div class="position-absolute top-50 start-50 translate-middle">
                             <h2 class="mb-0">{{ score.overall }}</h2>
-                            <p class="text-muted">Overall</p>
+                            <p class="text-muted translate" data-key="overall">Overall</p>
                         </div>
                     </div>
                 </div>
                 
                 <div class="mb-4">
-                    <h5>Category Scores</h5>
+                    <h5 class="translate" data-key="category_scores">Category Scores</h5>
                     {% for category, value in score.categories.items() %}
                     <div class="mb-3">
                         <div class="d-flex justify-content-between mb-1">
-                            <span class="text-capitalize">{{ category }}</span>
+                            <span class="text-capitalize">
+                                {% if category == 'content' %}
+                                    <span class="translate" data-key="content_score">Content</span>
+                                {% elif category == 'format' %}
+                                    <span class="translate" data-key="format_score">Format</span>
+                                {% elif category == 'language' %}
+                                    <span class="translate" data-key="language_score">Language</span>
+                                {% elif category == 'conciseness' %}
+                                    <span class="translate" data-key="conciseness_score">Conciseness</span>
+                                {% else %}
+                                    {{ category }}
+                                {% endif %}
+                            </span>
                             <span>{{ value }}/100</span>
                         </div>
                         <div class="progress" style="height: 8px;">
@@ -35,12 +47,12 @@
                 </div>
                 
                 <div class="mb-3">
-                    <h5>Summary</h5>
+                    <h5 class="translate" data-key="summary">Summary</h5>
                     <p>{{ score.summary }}</p>
                 </div>
                 
                 <div class="d-grid gap-2">
-                    <a href="{{ url_for('anschreiben_page') }}" class="btn btn-outline-primary">Generate Cover Letter</a>
+                    <a href="{{ url_for('anschreiben_page') }}" class="btn btn-outline-primary translate" data-key="generate_cover">Generate Cover Letter</a>
                 </div>
             </div>
         </div>
@@ -49,18 +61,18 @@
     <div class="col-md-8">
         <div class="card border-0 shadow-sm mb-4">
             <div class="card-body">
-                <h3 class="card-title">Improvement Suggestions</h3>
-                <p class="card-text">Review and apply suggested improvements to your resume.</p>
+                <h3 class="card-title translate" data-key="improvement_suggestions">Improvement Suggestions</h3>
+                <p class="card-text translate" data-key="review_suggestions">Review and apply suggested improvements to your resume.</p>
                 
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
                             <tr>
                                 <th style="width: 5%">#</th>
-                                <th style="width: 25%">Original</th>
-                                <th style="width: 25%">Suggestion</th>
-                                <th style="width: 30%">Explanation</th>
-                                <th style="width: 15%">Action</th>
+                                <th style="width: 25%" class="translate" data-key="original">Original</th>
+                                <th style="width: 25%" class="translate" data-key="suggestion">Suggestion</th>
+                                <th style="width: 30%" class="translate" data-key="explanation">Explanation</th>
+                                <th style="width: 15%" class="translate" data-key="action">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -77,7 +89,7 @@
                                                    id="correction-{{ loop.index }}" 
                                                    data-correction='{{ correction|tojson }}'>
                                             <label class="form-check-label" for="correction-{{ loop.index }}">
-                                                Apply
+                                                <span class="translate" data-key="apply">Apply</span>
                                             </label>
                                         </div>
                                     </td>
@@ -85,7 +97,7 @@
                                 {% endfor %}
                             {% else %}
                                 <tr>
-                                    <td colspan="5" class="text-center py-3">
+                                    <td colspan="5" class="text-center py-3 translate" data-key="no_suggestions">
                                         No suggestions found. Your resume looks good!
                                     </td>
                                 </tr>
@@ -95,10 +107,10 @@
                 </div>
                 
                 <div class="mt-3 d-flex flex-wrap justify-content-between">
-                    <button id="apply-selected" class="btn btn-primary mb-2">Apply Selected Corrections</button>
+                    <button id="apply-selected" class="btn btn-primary mb-2 translate" data-key="apply_selected">Apply Selected Corrections</button>
                     <div class="btn-group mb-2">
-                        <button id="select-all" class="btn btn-outline-secondary">Select All</button>
-                        <button id="deselect-all" class="btn btn-outline-secondary">Deselect All</button>
+                        <button id="select-all" class="btn btn-outline-secondary translate" data-key="select_all">Select All</button>
+                        <button id="deselect-all" class="btn btn-outline-secondary translate" data-key="deselect_all">Deselect All</button>
                     </div>
                 </div>
             </div>
@@ -106,7 +118,7 @@
         
         <div class="card border-0 shadow-sm">
             <div class="card-body">
-                <h3 class="card-title">Resume Text</h3>
+                <h3 class="card-title translate" data-key="resume_text">Resume Text</h3>
                 <div class="mb-3">
                     <textarea id="resume-text" class="form-control" rows="15">{{ resume_text }}</textarea>
                 </div>
@@ -116,12 +128,12 @@
                     <div class="row">
                         <div class="col-md-6 mb-2">
                             <select name="format" class="form-select">
-                                <option value="txt">Download as TXT</option>
-                                <option value="pdf">Download as PDF</option>
+                                <option value="txt" class="translate" data-key="download_txt">Download as TXT</option>
+                                <option value="pdf" class="translate" data-key="download_pdf">Download as PDF</option>
                             </select>
                         </div>
                         <div class="col-md-6 mb-2">
-                            <button type="submit" class="btn btn-success w-100">Download Resume</button>
+                            <button type="submit" class="btn btn-success w-100 translate" data-key="download_resume">Download Resume</button>
                         </div>
                     </div>
                 </form>
@@ -196,7 +208,9 @@
             });
             
             if (selectedCorrections.length === 0) {
-                alert('Please select at least one correction to apply.');
+                // Get translated error message
+                const errorMsg = document.querySelector('[data-key="select_correction_error"]')?.textContent || 'Please select at least one correction to apply.';
+                alert(errorMsg);
                 return;
             }
             
@@ -216,7 +230,9 @@
                 if (data.corrected_text) {
                     resumeText.value = data.corrected_text;
                     correctedTextInput.value = data.corrected_text;
-                    alert('Corrections applied successfully!');
+                    // Get translated success message
+                    const successMsg = document.querySelector('[data-key="corrections_applied"]')?.textContent || 'Corrections applied successfully!';
+                    alert(successMsg);
                     
                     // Uncheck applied corrections
                     selectedCorrections.forEach(correction => {
@@ -229,12 +245,16 @@
                         });
                     });
                 } else {
-                    alert('Error applying corrections: ' + (data.error || 'Unknown error'));
+                    // Get translated error message
+                    const errorPrefix = document.querySelector('[data-key="error_applying"]')?.textContent || 'Error applying corrections:';
+                    alert(errorPrefix + ' ' + (data.error || 'Unknown error'));
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('An error occurred while applying corrections.');
+                // Get translated error message
+                const errorMsg = document.querySelector('[data-key="error_occurred"]')?.textContent || 'An error occurred while applying corrections.';
+                alert(errorMsg);
             });
         });
     });
